@@ -2,8 +2,7 @@ package dev.leotoloza.avengersapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-
-
+// Colors used in the Avengers App theme
 val White = Color(0xFFFFFFFF)
 val Gray = Color(0xFFECEFF1)
 val DarkGrey = Color(0xFF262626)
