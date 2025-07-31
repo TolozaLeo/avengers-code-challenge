@@ -1,4 +1,7 @@
 package dev.leotoloza.avengersapp.domain.model
 
-class Comic {
-}
+//TODO HACER QUE SEA PARCELABLE
+data class Comic (
+    val title : String,
+    val year : Int,
+)
