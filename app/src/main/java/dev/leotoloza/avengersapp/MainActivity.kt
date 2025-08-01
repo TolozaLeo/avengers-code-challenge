@@ -12,6 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import dev.leotoloza.avengersapp.ui.common.BottomBar
+import dev.leotoloza.avengersapp.ui.common.TopBar
 import dev.leotoloza.avengersapp.ui.theme.AvengersAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +22,16 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AvengersAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+//                val navController = rememberNavController()
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = { TopBar("Avengers App") },
+                    bottomBar = { BottomBar() },
+                ) { innerPadding ->
+//                    NavGraph(
+//                        navController = navController,
+//                        modifier = Modifier.padding(innerPadding),
+//                    )
                     Greeting(
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
@@ -44,6 +55,15 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     AvengersAppTheme {
-        Greeting("Android")
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+            topBar = { TopBar("MARVEL CHALLENGE") },
+            bottomBar = { BottomBar() },
+        ) { innerPadding ->
+            Greeting(
+                name = "Android",
+                modifier = Modifier.padding(innerPadding)
+            )
+        }
     }
 }

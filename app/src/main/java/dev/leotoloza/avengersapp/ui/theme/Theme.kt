@@ -13,6 +13,7 @@ private val DarkColorScheme = darkColorScheme(
     onPrimary = Title,
     onSecondary = Subtitle,
     onTertiary = Description,
+    inverseOnSurface = Unselected,
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -22,6 +23,7 @@ private val LightColorScheme = lightColorScheme(
     onPrimary = Title,
     onSecondary = Subtitle,
     onTertiary = Description,
+    inverseOnSurface = Unselected,
 )
 
 @Composable
@@ -34,6 +36,6 @@ fun AvengersAppTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
-        content = content
+        content = content,
     )
 }
