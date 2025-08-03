@@ -16,14 +16,14 @@ fun NavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screens.characters.route,
+        startDestination = Screens.Characters.route,
         modifier = modifier.fillMaxSize()
     ) {
-        composable(Screens.characters.route){
+        composable(Screens.Characters.route){
             CharactersScreen()
         }
 
-        composable(Screens.events.route){
+        composable(Screens.Events.route){
             EventsScreen()
         }
     }

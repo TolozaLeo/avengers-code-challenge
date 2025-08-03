@@ -31,13 +31,13 @@ fun BottomBar(
 
     val navItems = listOf(
         BottomNavItem(
-            route = Screens.characters.route,
+            route = Screens.Characters.route,
             iconResSelected = R.drawable.ic_superhero_enabled,
             iconResUnselected = R.drawable.ic_superhero_disabled,
             contentDescription = "Characters"
         ),
         BottomNavItem(
-            route = Screens.events.route,
+            route = Screens.Events.route,
             iconResSelected = R.drawable.ic_calendar_enabled,
             iconResUnselected = R.drawable.ic_calendar_disabled,
             contentDescription = "Events"
