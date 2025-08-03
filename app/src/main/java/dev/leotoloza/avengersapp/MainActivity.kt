@@ -6,14 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import dev.leotoloza.avengersapp.ui.common.BottomBar
 import dev.leotoloza.avengersapp.ui.common.TopBar
+import dev.leotoloza.avengersapp.ui.navigation.NavGraph
 import dev.leotoloza.avengersapp.ui.theme.AvengersAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,19 +22,15 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AvengersAppTheme {
-//                val navController = rememberNavController()
+                val navController = rememberNavController()
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    topBar = { TopBar("Avengers App") },
-                    bottomBar = { BottomBar() },
+                    topBar = { TopBar("MARVEL CHALLENGE") },
+                    bottomBar = { BottomBar(navController = navController) },
                 ) { innerPadding ->
-//                    NavGraph(
-//                        navController = navController,
-//                        modifier = Modifier.padding(innerPadding),
-//                    )
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                    NavGraph(
+                        navController = navController,
+                        modifier = Modifier.padding(innerPadding),
                     )
                 }
             }
@@ -42,27 +38,19 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier,
-        color = MaterialTheme.colorScheme.onPrimary
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     AvengersAppTheme {
+        val navController = rememberNavController()
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = { TopBar("MARVEL CHALLENGE") },
-            bottomBar = { BottomBar() },
+            bottomBar = { BottomBar(navController) },
         ) { innerPadding ->
-            Greeting(
-                name = "Android",
-                modifier = Modifier.padding(innerPadding)
+            NavGraph(
+                navController = navController,
+                modifier = Modifier.padding(innerPadding),
             )
         }
     }

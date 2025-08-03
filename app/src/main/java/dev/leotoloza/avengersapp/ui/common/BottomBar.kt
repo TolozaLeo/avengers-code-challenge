@@ -10,7 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import dev.leotoloza.avengersapp.R
+import dev.leotoloza.avengersapp.ui.navigation.Screens
 
 data class BottomNavItem(
     val route: String,
@@ -21,35 +24,42 @@ data class BottomNavItem(
 
 @Composable
 fun BottomBar(
-//    navController: NavHostController,
+    navController: NavHostController
 ) {
+    val navBackStackEntry = navController.currentBackStackEntryAsState().value
+    val currentDestination = navBackStackEntry?.destination?.route
+
     val navItems = listOf(
         BottomNavItem(
-            route = "Characters",
+            route = Screens.characters.route,
             iconResSelected = R.drawable.ic_superhero_enabled,
             iconResUnselected = R.drawable.ic_superhero_disabled,
-            contentDescription = "CharactersScreen"
+            contentDescription = "Characters"
         ),
         BottomNavItem(
-            route = "Events",
+            route = Screens.events.route,
             iconResSelected = R.drawable.ic_calendar_enabled,
             iconResUnselected = R.drawable.ic_calendar_disabled,
-            contentDescription = "EventsScreen"
+            contentDescription = "Events"
         )
     )
-    // TODO Agregar toda la locica de navegacion
 
+    //TODO Crear una custom bottomBar para modificar la altura (tiene que tener 56.dp)
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.primary,
-        tonalElevation = 1.dp,
+        tonalElevation = 0.dp,
     ) {
         navItems.forEach { item ->
 
-            val isSelected = item.route == "Characters" // TODO: implementar lógica de selección real con route actual
+            val isSelected = item.route == currentDestination
 
             NavigationBarItem(
                 selected = isSelected,
-                onClick = { /* TODO manejar navegacion entre pantallas */ },
+                onClick = {
+                    if(!isSelected) {
+                        navController.navigate(item.route)
+                    }
+                },
                 icon = {
                     Icon(
                         painter = painterResource(
@@ -59,7 +69,7 @@ fun BottomBar(
                         tint = Color.Unspecified // Se respeta el color del recurso
                     )
                 },
-                label = { Text(text = item.route) },
+                label = { Text(text = item.contentDescription) },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = Color.Unspecified,
                     unselectedIconColor = Color.Unspecified,
