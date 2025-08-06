@@ -1,5 +1,8 @@
 package dev.leotoloza.avengersapp.ui.common
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -44,40 +47,46 @@ fun BottomBar(
         )
     )
 
-    //TODO Crear una custom bottomBar para modificar la altura (tiene que tener 56.dp)
-    NavigationBar(
-        containerColor = MaterialTheme.colorScheme.primary,
-        tonalElevation = 0.dp,
+    AnimatedVisibility(
+        visible = true,
+        enter = fadeIn(),
+        exit = fadeOut()
     ) {
-        navItems.forEach { item ->
+        //TODO Crear una custom bottomBar para modificar la altura (tiene que tener 56.dp)
+        NavigationBar(
+            containerColor = MaterialTheme.colorScheme.primary,
+            tonalElevation = 0.dp,
+        ) {
+            navItems.forEach { item ->
 
-            val isSelected = item.route == currentDestination
+                val isSelected = item.route == currentDestination
 
-            NavigationBarItem(
-                selected = isSelected,
-                onClick = {
-                    if(!isSelected) {
-                        navController.navigate(item.route)
-                    }
-                },
-                icon = {
-                    Icon(
-                        painter = painterResource(
-                            id = if (isSelected) item.iconResSelected else item.iconResUnselected
-                        ),
-                        contentDescription = item.contentDescription,
-                        tint = Color.Unspecified // Se respeta el color del recurso
+                NavigationBarItem(
+                    selected = isSelected,
+                    onClick = {
+                        if (!isSelected) {
+                            navController.navigate(item.route)
+                        }
+                    },
+                    icon = {
+                        Icon(
+                            painter = painterResource(
+                                id = if (isSelected) item.iconResSelected else item.iconResUnselected
+                            ),
+                            contentDescription = item.contentDescription,
+                            tint = Color.Unspecified // Se respeta el color del recurso
+                        )
+                    },
+                    label = { Text(text = item.contentDescription) },
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = Color.Unspecified,
+                        unselectedIconColor = Color.Unspecified,
+                        selectedTextColor = MaterialTheme.colorScheme.onSecondary,
+                        unselectedTextColor = MaterialTheme.colorScheme.inverseOnSurface,
+                        indicatorColor = Color.Transparent
                     )
-                },
-                label = { Text(text = item.contentDescription) },
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = Color.Unspecified,
-                    unselectedIconColor = Color.Unspecified,
-                    selectedTextColor = MaterialTheme.colorScheme.onSecondary,
-                    unselectedTextColor = MaterialTheme.colorScheme.inverseOnSurface,
-                    indicatorColor = Color.Transparent
                 )
-            )
+            }
         }
     }
 }

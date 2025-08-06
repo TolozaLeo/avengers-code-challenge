@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import dev.leotoloza.avengersapp.ui.characters.CharactersScreen
+import dev.leotoloza.avengersapp.ui.common.SplashScreen
 import dev.leotoloza.avengersapp.ui.events.EventsScreen
 
 @Composable
@@ -16,9 +17,16 @@ fun NavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screens.Characters.route,
+        startDestination = Screens.Splash.route,
         modifier = modifier.fillMaxSize()
     ) {
+        composable(Screens.Splash.route) {
+            SplashScreen(onNavigateToNextScreen = {
+                navController.navigate(Screens.Characters.route) {
+                    popUpTo(Screens.Splash.route) { inclusive = true }
+                }
+            })
+        }
         composable(Screens.Characters.route){
             CharactersScreen()
         }
