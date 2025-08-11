@@ -26,27 +26,30 @@ val Typography = Typography(
         fontFamily = RobotoCondensedBold,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp,
-        lineHeight = 26.sp
+        lineHeight = 26.sp,
+        color = White
     ),
     // 2- Título de cada elemento en una lista
     titleLarge = TextStyle(
         fontFamily = RobotoCondensed,
         fontWeight = FontWeight.Normal,
         fontSize = 24.sp,
-        lineHeight = 32.sp
+        lineHeight = 32.sp,
+        color = Title
     ),
     // 3- Descripción de cada elemento de la lista
     bodyMedium = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
-        lineHeight = 20.sp
+        lineHeight = 20.sp,
+        color = Subtitle
     ),
     // 4- Nombre de elementos en la navigationBar
     labelSmall = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
-        lineHeight = 16.sp
+        lineHeight = 16.sp,
     )
 )

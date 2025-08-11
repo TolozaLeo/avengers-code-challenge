@@ -1,7 +1,10 @@
 package dev.leotoloza.avengersapp.domain.model
 
-//TODO HACER QUE SEA PARCELABLE
-data class Comic (
-    val title : String,
-    val year : Int,
-)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Comic(
+    val title: String,
+    val year: Int,
+) : Parcelable

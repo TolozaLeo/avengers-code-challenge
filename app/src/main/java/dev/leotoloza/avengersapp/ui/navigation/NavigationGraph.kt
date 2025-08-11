@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import dev.leotoloza.avengersapp.ui.characters.CharacterDetailScreen
 import dev.leotoloza.avengersapp.ui.characters.CharactersScreen
 import dev.leotoloza.avengersapp.ui.common.SplashScreen
 import dev.leotoloza.avengersapp.ui.events.EventsScreen
@@ -27,11 +28,16 @@ fun NavGraph(
                 }
             })
         }
-        composable(Screens.Characters.route){
-            CharactersScreen()
+        composable(Screens.Characters.route) {
+            CharactersScreen(
+                onItemClicked = {
+                    navController.navigate(Screens.CharacterDetail.route)
+                })
         }
-
-        composable(Screens.Events.route){
+        composable(Screens.CharacterDetail.route) {
+            CharacterDetailScreen()
+        }
+        composable(Screens.Events.route) {
             EventsScreen()
         }
     }

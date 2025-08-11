@@ -30,9 +30,7 @@ fun TopBar(
     val showBackButton = currentDestination == Screens.CharacterDetail.route
 
     AnimatedVisibility(
-        visible = true,
-        enter = fadeIn(),
-        exit = fadeOut()
+        visible = true, enter = fadeIn(), exit = fadeOut()
     ) {
         CenterAlignedTopAppBar(
             title = {
@@ -49,7 +47,7 @@ fun TopBar(
                     Icon(
                         Icons.Default.Clear,
                         contentDescription = "Atrás",
-                        modifier = Modifier.size(14.dp),
+                        modifier = Modifier.size(24.dp),
                         tint = MaterialTheme.colorScheme.primary
                     )
                 }

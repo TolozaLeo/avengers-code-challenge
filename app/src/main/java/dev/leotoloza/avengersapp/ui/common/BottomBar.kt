@@ -3,6 +3,7 @@ package dev.leotoloza.avengersapp.ui.common
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -10,6 +11,8 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -38,8 +41,7 @@ fun BottomBar(
             iconResSelected = R.drawable.ic_superhero_enabled,
             iconResUnselected = R.drawable.ic_superhero_disabled,
             contentDescription = "Characters"
-        ),
-        BottomNavItem(
+        ), BottomNavItem(
             route = Screens.Events.route,
             iconResSelected = R.drawable.ic_calendar_enabled,
             iconResUnselected = R.drawable.ic_calendar_disabled,
@@ -48,27 +50,24 @@ fun BottomBar(
     )
 
     AnimatedVisibility(
-        visible = true,
-        enter = fadeIn(),
-        exit = fadeOut()
+        visible = true, enter = fadeIn(), exit = fadeOut()
     ) {
-        //TODO Crear una custom bottomBar para modificar la altura (tiene que tener 56.dp)
-        NavigationBar(
-            containerColor = MaterialTheme.colorScheme.primary,
-            tonalElevation = 0.dp,
+        Box(
+            modifier = Modifier.shadow(8.dp)
         ) {
-            navItems.forEach { item ->
+            NavigationBar(
+                containerColor = MaterialTheme.colorScheme.primary,
+            ) {
+                navItems.forEach { item ->
 
-                val isSelected = item.route == currentDestination
+                    val isSelected = item.route == currentDestination
 
-                NavigationBarItem(
-                    selected = isSelected,
-                    onClick = {
+                    NavigationBarItem(
+                        selected = isSelected, onClick = {
                         if (!isSelected) {
                             navController.navigate(item.route)
                         }
-                    },
-                    icon = {
+                    }, icon = {
                         Icon(
                             painter = painterResource(
                                 id = if (isSelected) item.iconResSelected else item.iconResUnselected
@@ -76,16 +75,20 @@ fun BottomBar(
                             contentDescription = item.contentDescription,
                             tint = Color.Unspecified // Se respeta el color del recurso
                         )
-                    },
-                    label = { Text(text = item.contentDescription) },
-                    colors = NavigationBarItemDefaults.colors(
+                    }, label = {
+                        Text(
+                            text = item.contentDescription,
+                            style = MaterialTheme.typography.labelSmall
+                        )
+                    }, colors = NavigationBarItemDefaults.colors(
                         selectedIconColor = Color.Unspecified,
                         unselectedIconColor = Color.Unspecified,
-                        selectedTextColor = MaterialTheme.colorScheme.onSecondary,
+                        selectedTextColor = MaterialTheme.colorScheme.secondary,
                         unselectedTextColor = MaterialTheme.colorScheme.inverseOnSurface,
                         indicatorColor = Color.Transparent
                     )
-                )
+                    )
+                }
             }
         }
     }
