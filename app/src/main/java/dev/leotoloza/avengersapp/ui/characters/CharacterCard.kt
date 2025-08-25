@@ -26,9 +26,13 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import dev.leotoloza.avengersapp.R
+import dev.leotoloza.avengersapp.domain.model.Character
 
 @Composable
-fun CharacterCard(characterName: String, onItemClicked: () -> Unit) {
+fun CharacterCard(
+    character: Character,
+    onItemClicked: () -> Unit
+) {
     Card(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.background)
@@ -36,7 +40,8 @@ fun CharacterCard(characterName: String, onItemClicked: () -> Unit) {
             .fillMaxWidth()
             .padding(top = 9.dp, start = 8.dp, end = 8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.5.dp),
-        onClick = { onItemClicked() }) {
+        onClick = onItemClicked
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxSize()
@@ -48,9 +53,9 @@ fun CharacterCard(characterName: String, onItemClicked: () -> Unit) {
                     .width(120.dp)
             ) {
                 AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data("https://picsum.photos/200/200").crossfade(true).build(),
-                    contentDescription = "Character image",
+                    model = ImageRequest.Builder(LocalContext.current).data(character.thumbnailUrl)
+                        .crossfade(true).build(),
+                    contentDescription = "Character thumbnail",
                     contentScale = ContentScale.Crop,
                     placeholder = painterResource(R.drawable.img_thanos), //TODO CAMBIAR PLACEHOLDER
                     modifier = Modifier.fillMaxSize()
@@ -61,14 +66,14 @@ fun CharacterCard(characterName: String, onItemClicked: () -> Unit) {
                 modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
-                    text = characterName,
+                    text = character.name,
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(top = 15.dp),
                     color = MaterialTheme.colorScheme.onPrimary,
                     maxLines = 1,
                 )
                 Text(
-                    text = "Texto de ejemplo",
+                    text = character.description,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier
                         .fillMaxWidth()

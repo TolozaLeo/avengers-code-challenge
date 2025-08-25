@@ -16,26 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import dev.leotoloza.avengersapp.domain.model.Comic
+import dev.leotoloza.avengersapp.domain.model.Character
 import dev.leotoloza.avengersapp.ui.common.ComicCard
 
-//  TODO Pasar por parametro el personaje
 @Composable
-fun CharacterDetailScreen() {
-    val comics = listOf(
-        Comic("Iron Man (1968) #55", 1973),
-        Comic("Avengers (1963) #125", 1974),
-        Comic("Silver Surfer (1987) #38", 1990),
-        Comic("Thanos Quest (1990) #1", 1990)
-    )
-    val character = dev.leotoloza.avengersapp.domain.model.Character(
-        id = 1,
-        name = "Thanos",
-        description = "Using the power of the Infinity Stones, Pepe believes he can ultimately save the universe by wiping out half of its population.",
-        thumbnailUrl = "https://picsum.photos/300/300",
-        comics = comics
-    )
-
+fun CharacterDetailScreen(character: Character) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -64,7 +49,7 @@ fun CharacterDetailScreen() {
             )
             Spacer(modifier = Modifier.height(14.dp))
         }
-        items(comics) { comic ->
+        items(character.comics) { comic ->
             ComicCard(
                 comicTitle = comic.title,
                 comicYear = comic.year

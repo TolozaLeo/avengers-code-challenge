@@ -9,12 +9,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import dev.leotoloza.avengersapp.ui.common.BottomBar
 import dev.leotoloza.avengersapp.ui.common.TopBar
 import dev.leotoloza.avengersapp.ui.navigation.NavGraph
 import dev.leotoloza.avengersapp.ui.navigation.Screens
 import dev.leotoloza.avengersapp.ui.theme.AvengersAppTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

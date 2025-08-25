@@ -1,26 +1,29 @@
 package dev.leotoloza.avengersapp.ui.characters
 
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import dev.leotoloza.avengersapp.ui.navigation.Screens
 
 @Composable
 fun CharactersScreen(
-//    viewModel: CharactersViewModel = hiltViewModel()
-//    onItemClicked: (Character) -> Unit = {  }
-    onItemClicked: () -> Unit = { }
+    navController: NavController,
+    viewModel: CharactersViewModel = hiltViewModel(),
 ) {
+    val characters = viewModel.getCharacters(20, 0)
+
     LazyColumn {
-        items(20) { index ->
+        items(characters) { character ->
             CharacterCard(
-                characterName = "Character ${index + 1}", onItemClicked = onItemClicked
-            )
+                character = character,
+                onItemClicked = {
+                    navController.navigate(Screens.CharacterDetail.route)
+                    navController.currentBackStackEntry?.savedStateHandle?.set(
+                        "selectedCharacter", character
+                    )
+                })
         }
     }
-}
-
-@Preview
-@Composable
-fun CharactersScreenPreview() {
-    CharactersScreen(onItemClicked = {})
 }

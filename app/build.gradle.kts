@@ -2,12 +2,18 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.daggerHiltAndroid)
     id("kotlin-parcelize")
+}
+
+hilt {
+    enableAggregatingTask = false
 }
 
 android {
     namespace = "dev.leotoloza.avengersapp"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "dev.leotoloza.avengersapp"
@@ -29,11 +35,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     buildFeatures {
         compose = true
@@ -58,8 +61,14 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+//    Viewmodel
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 //    Navigation
     implementation(libs.androidx.navigation.compose)
 //    Coil para carga de imagenes
     implementation(libs.coil.compose)
+//    Hilt + ksp para inyeccion de dependencias
+    implementation(libs.google.dagger.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.google.dagger.hilt.android.compiler)
 }
