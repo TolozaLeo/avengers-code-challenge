@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.leotoloza.avengersapp.domain.model.Character
 import dev.leotoloza.avengersapp.ui.common.ComicCard
+import dev.leotoloza.avengersapp.ui.common.createImageRequest
 
 @Composable
 fun CharacterDetailScreen(character: Character) {
@@ -27,7 +28,7 @@ fun CharacterDetailScreen(character: Character) {
     ) {
         item {
             AsyncImage(
-                model = character.thumbnailUrl,
+                model = createImageRequest(character.thumbnailUrl),
                 contentDescription = "Character image",
                 modifier = Modifier
                     .fillMaxWidth()

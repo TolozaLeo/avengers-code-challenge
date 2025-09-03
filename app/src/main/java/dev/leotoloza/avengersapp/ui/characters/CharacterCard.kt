@@ -20,14 +20,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import dev.leotoloza.avengersapp.R
 import dev.leotoloza.avengersapp.domain.model.Character
+import dev.leotoloza.avengersapp.ui.common.createImageRequest
 
 @Composable
 fun CharacterCard(
@@ -54,8 +53,7 @@ fun CharacterCard(
                     .width(120.dp)
             ) {
                 AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current).data(character.thumbnailUrl)
-                        .crossfade(true).build(),
+                    model = createImageRequest(character.thumbnailUrl),
                     contentDescription = "Character thumbnail",
                     contentScale = ContentScale.Crop,
                     placeholder = painterResource(R.drawable.img_thanos), //TODO CAMBIAR PLACEHOLDER
