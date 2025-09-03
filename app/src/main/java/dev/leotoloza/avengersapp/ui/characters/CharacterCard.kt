@@ -56,7 +56,7 @@ fun CharacterCard(
                     model = createImageRequest(character.thumbnailUrl),
                     contentDescription = "Character thumbnail",
                     contentScale = ContentScale.Crop,
-                    placeholder = painterResource(R.drawable.img_thanos), //TODO CAMBIAR PLACEHOLDER
+                    placeholder = painterResource(R.drawable.img_character_placeholder),
                     modifier = Modifier.fillMaxSize()
                 )
             }

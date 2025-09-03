@@ -65,7 +65,7 @@ fun EventCard(
                     model = createImageRequest(event.thumbnailUrl),
                     contentDescription = "Event thumbnail",
                     contentScale = ContentScale.Crop,
-                    placeholder = painterResource(R.drawable.img_thanos), //TODO cambiar placeholder
+                    placeholder = painterResource(R.drawable.img_character_placeholder),
                     modifier = Modifier
                         .size(86.dp)
                         .clip(RoundedCornerShape(4.dp))
