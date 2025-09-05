@@ -10,55 +10,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.leotoloza.avengersapp.domain.model.Comic
-import dev.leotoloza.avengersapp.domain.model.Event
-import kotlin.collections.listOf
+import androidx.hilt.navigation.compose.hiltViewModel
 
 //TODO Hacer uso del viewmodel para obtener los eventos
 @Composable
-fun EventsScreen() {
-    val events = listOf(
-        Event(
-            id = 1,
-            title = "Title",
-            description = "Description",
-            thumbnailUrl = "https://picsum.photos/86/86",
-            comics = listOf(
-                Comic("Iron Man (1968) #55", 1973),
-                Comic("Avengers (1963) #125", 1974),
-                Comic("Silver Surfer (1987) #38", 1990),
-                Comic("Thanos Quest (1990) #1", 1990)
-            )
-        ),
-        Event(
-            id = 1,
-            title = "Title",
-            description = "Description",
-            thumbnailUrl = "https://picsum.photos/86/86",
-            comics = emptyList()
-        ),
-        Event(
-            id = 1,
-            title = "Title",
-            description = "Description",
-            thumbnailUrl = "https://picsum.photos/86/86",
-            comics = emptyList()
-        ),
-        Event(
-            id = 1,
-            title = "Title",
-            description = "Description",
-            thumbnailUrl = "https://picsum.photos/86/86",
-            comics = emptyList()
-        ),
-        Event(
-            id = 1,
-            title = "Title",
-            description = "Description",
-            thumbnailUrl = "https://picsum.photos/86/86",
-            comics = emptyList()
-        ),
-    )
+fun EventsScreen(
+    viewModel: EventsViewModel = hiltViewModel(),
+) {
+    val events = viewModel.getEvents(0,0)
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
