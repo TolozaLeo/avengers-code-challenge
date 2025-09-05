@@ -46,6 +46,7 @@ fun SplashScreen(onNavigateToNextScreen: () -> Unit) {
             Text(
                 text = stringResource(id = R.string.marvel_challenge),
                 color = MaterialTheme.colorScheme.onPrimary,
+                style = MaterialTheme.typography.headlineLarge,
                 modifier = Modifier.padding(6.dp),
             )
         }

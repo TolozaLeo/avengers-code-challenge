@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
-//TODO Hacer uso del viewmodel para obtener los eventos
 @Composable
 fun EventsScreen(
     viewModel: EventsViewModel = hiltViewModel(),
