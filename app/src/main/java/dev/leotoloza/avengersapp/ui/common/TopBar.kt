@@ -15,9 +15,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import dev.leotoloza.avengersapp.R
+import dev.leotoloza.avengersapp.domain.model.Character
 import dev.leotoloza.avengersapp.ui.navigation.Screens
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -27,15 +30,22 @@ fun TopBar(
 ) {
     val navBackStackEntry = navController.currentBackStackEntryAsState().value
     val currentDestination = navBackStackEntry?.destination?.route
+
     val showBackButton = currentDestination == Screens.CharacterDetail.route
+
+    val character = navBackStackEntry?.savedStateHandle?.get<Character>("selectedCharacter")
 
     AnimatedVisibility(
         visible = true, enter = fadeIn(), exit = fadeOut()
     ) {
         CenterAlignedTopAppBar(
             title = {
+            val tittleText =
+                if (currentDestination == Screens.CharacterDetail.route && character != null)
+                    character.name
+                else stringResource(R.string.marvel_challenge)
             Text(
-                text = "MARVEL CHALLENGE",
+                text = tittleText,
                 style = MaterialTheme.typography.headlineLarge,
                 color = MaterialTheme.colorScheme.primary
             )
