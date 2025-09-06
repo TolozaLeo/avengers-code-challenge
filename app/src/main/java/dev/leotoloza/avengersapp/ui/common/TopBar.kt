@@ -42,7 +42,7 @@ fun TopBar(
             title = {
             val tittleText =
                 if (currentDestination == Screens.CharacterDetail.route && character != null)
-                    character.name
+                    character.name.uppercase()
                 else stringResource(R.string.marvel_challenge)
             Text(
                 text = tittleText,
