@@ -1,5 +1,6 @@
 package dev.leotoloza.avengersapp.ui.characters
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -41,7 +42,7 @@ class CharactersViewModel
         }
         viewModelScope.launch {
             _uiState.value = CharactersUiState.Loading
-            delay(2000) // Simula una carga de datos
+            delay(1000) // Simula una carga de datos
             val list = getHardCodedList()
             cachedCharacters = list
             _uiState.value = CharactersUiState.Success(list)

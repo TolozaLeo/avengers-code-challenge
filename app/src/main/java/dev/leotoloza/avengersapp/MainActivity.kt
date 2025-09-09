@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                         if (currentDestination != Screens.Splash.route) TopBar(navController = navController)
                     },
                     bottomBar = {
-                        if (currentDestination == Screens.Characters.route || currentDestination == Screens.Events.route) BottomBar(
+                        BottomBar(
                             navController = navController
                         )
                     },
