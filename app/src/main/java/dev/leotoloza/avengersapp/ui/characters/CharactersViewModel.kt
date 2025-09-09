@@ -1,32 +1,51 @@
 package dev.leotoloza.avengersapp.ui.characters
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.leotoloza.avengersapp.domain.model.Character
 import dev.leotoloza.avengersapp.domain.model.Comic
 import dev.leotoloza.avengersapp.domain.usecases.GetCharactersUseCase
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+sealed class CharactersUiState {
+    object Loading : CharactersUiState()
+    data class Success(val characters: List<Character>) : CharactersUiState()
+    data class Error(val errorMessage: String) : CharactersUiState()
+}
 
 @HiltViewModel
 class CharactersViewModel
 @Inject constructor(
     private val getCharactersUseCase: GetCharactersUseCase,
 ) : ViewModel() {
-    // TODO Implementar uiState con StateFlow
-    fun getCharacters(limit: Int, offset: Int): List<Character> { //TODO Eliminar hardcodeo
-        viewModelScope.launch {
-            val result = getCharactersUseCase(0, 0)
-            if (result.isSuccess) {
-                Log.d("CharactersViewModel", "Success fetching characters")
-            }
-            else {
-                Log.e("CharactersViewModel", "Error fetching characters")
-            }
+    private val _uiState = MutableStateFlow<CharactersUiState>(CharactersUiState.Loading)
+    val uiState: StateFlow<CharactersUiState> = _uiState
+
+    // Guarda la lista para evitar recargar
+    private var cachedCharacters: List<Character>? = null
+
+    init {
+        getCharacters(0, 0)
+    }
+
+    fun getCharacters(limit: Int, offset: Int) {
+        // Solo carga si no hay datos en caché
+        if (cachedCharacters != null) {
+            _uiState.value = CharactersUiState.Success(cachedCharacters!!)
+            return
         }
-        return getHardCodedList()
+        viewModelScope.launch {
+            _uiState.value = CharactersUiState.Loading
+            delay(2000) // Simula una carga de datos
+            val list = getHardCodedList()
+            cachedCharacters = list
+            _uiState.value = CharactersUiState.Success(list)
+        }
     }
 
     private fun getHardCodedList(): List<Character> {
