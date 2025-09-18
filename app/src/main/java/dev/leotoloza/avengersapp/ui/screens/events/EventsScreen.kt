@@ -1,13 +1,15 @@
-package dev.leotoloza.avengersapp.ui.events
+package dev.leotoloza.avengersapp.ui.screens.events
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.hilt.navigation.compose.hiltViewModel
-import dev.leotoloza.avengersapp.ui.common.LoadingScreen
+import dev.leotoloza.avengersapp.ui.screens.common.LoadingScreen
+import dev.leotoloza.avengersapp.ui.screens.events.components.EventsList
+import dev.leotoloza.avengersapp.ui.viewmodels.EventsUiState
+import dev.leotoloza.avengersapp.ui.viewmodels.EventsViewModel
 
 @Composable
 fun EventsScreen(
-    viewModel: EventsViewModel = hiltViewModel(),
+    viewModel: EventsViewModel,
 ) {
     val uiState = viewModel.uiState.collectAsState()
 

@@ -1,4 +1,4 @@
-package dev.leotoloza.avengersapp.ui.common
+package dev.leotoloza.avengersapp.ui.screens.common
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext

@@ -1,9 +1,12 @@
-package dev.leotoloza.avengersapp.ui.characters
+package dev.leotoloza.avengersapp.ui.screens.characters
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavController
-import dev.leotoloza.avengersapp.ui.common.LoadingScreen
+import dev.leotoloza.avengersapp.ui.screens.characters.components.CharactersList
+import dev.leotoloza.avengersapp.ui.viewmodels.CharactersUiState
+import dev.leotoloza.avengersapp.ui.viewmodels.CharactersViewModel
+import dev.leotoloza.avengersapp.ui.screens.common.LoadingScreen
 
 @Composable
 fun CharactersScreen(

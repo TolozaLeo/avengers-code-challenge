@@ -1,4 +1,4 @@
-package dev.leotoloza.avengersapp.ui.events
+package dev.leotoloza.avengersapp.ui.screens.characters.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,11 +10,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.leotoloza.avengersapp.domain.model.Event
+import androidx.navigation.NavController
+import dev.leotoloza.avengersapp.domain.model.Character
+import dev.leotoloza.avengersapp.ui.navigation.Screens
 
 @Composable
-fun EventsList(
-    eventsList: List<Event>,
+fun CharactersList(
+    charactersList: List<Character>,
+    navController: NavController,
 ) {
     LazyColumn(
         modifier = Modifier
@@ -23,8 +26,14 @@ fun EventsList(
             .background(MaterialTheme.colorScheme.background),
         verticalArrangement = Arrangement.spacedBy(9.dp)
     ) {
-        items(eventsList) { event ->
-            EventCard(event)
+        items(charactersList) { character ->
+            CharacterCard(
+                character = character, onItemClicked = {
+                    navController.navigate(Screens.CharacterDetail.route)
+                    navController.currentBackStackEntry?.savedStateHandle?.set(
+                        "selectedCharacter", character
+                    )
+                })
         }
     }
 }

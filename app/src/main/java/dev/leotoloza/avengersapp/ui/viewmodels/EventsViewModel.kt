@@ -1,4 +1,4 @@
-package dev.leotoloza.avengersapp.ui.events
+package dev.leotoloza.avengersapp.ui.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

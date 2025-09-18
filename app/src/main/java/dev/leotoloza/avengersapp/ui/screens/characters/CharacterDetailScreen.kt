@@ -1,4 +1,4 @@
-package dev.leotoloza.avengersapp.ui.characters
+package dev.leotoloza.avengersapp.ui.screens.characters
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -17,8 +17,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.leotoloza.avengersapp.domain.model.Character
-import dev.leotoloza.avengersapp.ui.common.ComicCard
-import dev.leotoloza.avengersapp.ui.common.createImageRequest
+import dev.leotoloza.avengersapp.ui.screens.common.ComicCard
+import dev.leotoloza.avengersapp.ui.screens.common.createImageRequest
 
 @Composable
 fun CharacterDetailScreen(character: Character) {

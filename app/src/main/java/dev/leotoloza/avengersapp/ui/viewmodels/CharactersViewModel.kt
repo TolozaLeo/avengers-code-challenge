@@ -1,4 +1,4 @@
-package dev.leotoloza.avengersapp.ui.characters
+package dev.leotoloza.avengersapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -33,7 +33,7 @@ class CharactersViewModel
         getCharacters(0, 0)
     }
 
-    fun getCharacters(limit: Int, offset: Int) {
+    private fun getCharacters(limit: Int, offset: Int) {
         // Solo carga si no hay datos en caché
         if (cachedCharacters != null) {
             _uiState.value = CharactersUiState.Success(cachedCharacters!!)
@@ -46,6 +46,10 @@ class CharactersViewModel
             cachedCharacters = list
             _uiState.value = CharactersUiState.Success(list)
         }
+    }
+
+    fun getCharacterById(id: Int): Character? {
+        return cachedCharacters?.find { it.id == id }
     }
 
     private fun getHardCodedList(): List<Character> {

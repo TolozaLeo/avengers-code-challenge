@@ -1,4 +1,4 @@
-package dev.leotoloza.avengersapp.ui.events
+package dev.leotoloza.avengersapp.ui.screens.events.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
@@ -37,8 +37,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.leotoloza.avengersapp.R
 import dev.leotoloza.avengersapp.domain.model.Event
-import dev.leotoloza.avengersapp.ui.common.ComicCard
-import dev.leotoloza.avengersapp.ui.common.createImageRequest
+import dev.leotoloza.avengersapp.ui.screens.common.ComicCard
+import dev.leotoloza.avengersapp.ui.screens.common.createImageRequest
 
 @Composable
 fun EventCard(

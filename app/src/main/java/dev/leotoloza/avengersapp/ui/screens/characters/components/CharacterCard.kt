@@ -1,4 +1,4 @@
-package dev.leotoloza.avengersapp.ui.characters
+package dev.leotoloza.avengersapp.ui.screens.characters.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.leotoloza.avengersapp.R
 import dev.leotoloza.avengersapp.domain.model.Character
-import dev.leotoloza.avengersapp.ui.common.createImageRequest
+import dev.leotoloza.avengersapp.ui.screens.common.createImageRequest
 
 @Composable
 fun CharacterCard(

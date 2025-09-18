@@ -1,4 +1,4 @@
-package dev.leotoloza.avengersapp.ui.common
+package dev.leotoloza.avengersapp.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
