@@ -29,10 +29,7 @@ fun CharactersList(
         items(charactersList) { character ->
             CharacterCard(
                 character = character, onItemClicked = {
-                    navController.navigate(Screens.CharacterDetail.route)
-                    navController.currentBackStackEntry?.savedStateHandle?.set(
-                        "selectedCharacter", character
-                    )
+                    navController.navigate(Screens.CharacterDetail.createRoute(character.id))
                 })
         }
     }
