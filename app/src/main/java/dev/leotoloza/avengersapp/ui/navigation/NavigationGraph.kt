@@ -49,7 +49,7 @@ fun NavGraph(
         navigation(startDestination = CHARACTERS_GRAPH_ROUTE, route = MAIN_APP_GRAPH_ROUTE) {
             // Characters graph anidado para optimizacion del ciclo de vida del ViewModel
             // y que no se recomponga siempre que se navegue a otra pantalla desde la bottomBar.
-            // Mantiene el cache
+            // Mantiene los datos que trae de la api cargados como cache.
             navigation(
                 startDestination = Screens.Characters.route, route = CHARACTERS_GRAPH_ROUTE
             ) {
@@ -72,14 +72,15 @@ fun NavGraph(
                         navController.getBackStackEntry(CHARACTERS_GRAPH_ROUTE)
                     }
                     val charactersViewModel: CharactersViewModel = hiltViewModel(parentEntry)
-                    val characterId = entry.arguments?.getInt(Screens.CharacterDetail.NAV_ARG_CHARACTER_ID)
-                    val character: Character? = characterId?.let { charactersViewModel.getCharacterById(it) }
+                    val selectedCharacterId = entry.arguments?.getInt(Screens.CharacterDetail.NAV_ARG_CHARACTER_ID)
+                    val character: Character? = selectedCharacterId?.let { charactersViewModel.getCharacterById(it) }
 
-                    if (character != null) {
-                        onTitleChange(character.name.uppercase())
-                        CharacterDetailScreen(character = character)
-                    } else {
+                    character?.let { char ->
+                        onTitleChange(char.name.uppercase())
+                        CharacterDetailScreen(character = char)
+                    } ?: run { // Si character es null (id no valido), navega hacia atras
                         LaunchedEffect(Unit) {
+                            //TODO mostrar mensaje de error
                             navController.navigateUp()
                         }
                     }

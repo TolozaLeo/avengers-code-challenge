@@ -25,7 +25,7 @@ fun CharactersScreen(
             )
         }
         is CharactersUiState.Error -> {
-            // Mostrar un mensaje de error
+            // TODO Mostrar un mensaje de error
         }
     }
 }
