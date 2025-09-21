@@ -6,6 +6,12 @@ plugins {
     alias(libs.plugins.daggerHiltAndroid)
     id("kotlin-parcelize")
 }
+// Acceder al local.properties para leer las API keys
+val localProperties = org.jetbrains.kotlin.konan.properties.Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
+}
 
 hilt {
     enableAggregatingTask = false
@@ -23,6 +29,15 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Exponer las API keys como constantes BuildConfig para acceder desde código
+        val publicApiKey = localProperties.getProperty("API_PUBLIC_KEY", "")
+        buildConfigField("String", "API_PUBLIC_KEY", "\"$publicApiKey\"")
+        manifestPlaceholders["API_PUBLIC_KEY"] = publicApiKey
+
+        val privateApikey = localProperties.getProperty("API_PRIVATE_KEY", "")
+        buildConfigField("String", "API_PRIVATE_KEY", "\"$privateApikey\"")
+        manifestPlaceholders["API_PRIVATE_KEY"] = publicApiKey
     }
 
     buildTypes {
@@ -40,6 +55,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -67,7 +83,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
 //    Coil para carga de imagenes
     implementation(libs.coil.compose)
-//    Hilt + ksp para inyeccion de dependencias
+//    Dagger Hilt + ksp para inyeccion de dependencias
     implementation(libs.google.dagger.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.google.dagger.hilt.android.compiler)
