@@ -26,25 +26,25 @@ class EventsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<EventsUiState>(EventsUiState.Loading)
     val uiState: StateFlow<EventsUiState> = _uiState
 
-    private var cachedEvents: List<Event>? = null
+    private var cachedEvents: MutableList<Event> = emptyList<Event>().toMutableList()
 
     init {
-        getEvents(0, 0)
+        getEvents( 0)
     }
 
     //TODO Eliminar hardcodeo
-    fun getEvents(limit: Int, offset: Int) {
-        if (cachedEvents != null) {
-            _uiState.value = EventsUiState.Success(cachedEvents!!)
+    fun getEvents(offset: Int) {
+        if (cachedEvents.isNotEmpty()) {
+            _uiState.value = EventsUiState.Success(cachedEvents)
             return
         }
         viewModelScope.launch {
             _uiState.value = EventsUiState.Loading
             delay(1500)
-            val result = getEventsUseCase(0, 0)
+            val result = getEventsUseCase(0)
             if (result.isSuccess) {
                 val list = getHardCodedList()
-                cachedEvents = list
+                cachedEvents.addAll(list)
                 _uiState.value = EventsUiState.Success(list)
             } else {
                 //TODO Manejar error

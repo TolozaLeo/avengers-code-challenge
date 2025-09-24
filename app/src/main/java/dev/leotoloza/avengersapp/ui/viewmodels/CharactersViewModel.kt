@@ -27,29 +27,28 @@ class CharactersViewModel
     val uiState: StateFlow<CharactersUiState> = _uiState
 
     // Guarda la lista para evitar recargar
-    private var cachedCharacters: List<Character>? = null
+    private var cachedCharacters: MutableList<Character> = emptyList<Character>().toMutableList()
 
     init {
-        getCharacters(0, 0)
+        getCharacters(0)
     }
 
-    private fun getCharacters(limit: Int, offset: Int) {
-        // Solo carga si no hay datos en caché
-        if (cachedCharacters != null) {
-            _uiState.value = CharactersUiState.Success(cachedCharacters!!)
+    private fun getCharacters(offset: Int) {
+        if (cachedCharacters.isNotEmpty()) {// Solo carga si no hay datos en caché
+            _uiState.value = CharactersUiState.Success(cachedCharacters)
             return
         }
         viewModelScope.launch {
             _uiState.value = CharactersUiState.Loading
             delay(1000) // Simula una carga de datos
             val list = getHardCodedList()
-            cachedCharacters = list
+            cachedCharacters.addAll(list)
             _uiState.value = CharactersUiState.Success(list)
         }
     }
 
     fun getCharacterById(id: Int): Character? {
-        return cachedCharacters?.find { it.id == id }
+        return cachedCharacters.find { it.id == id }
     }
 
     private fun getHardCodedList(): List<Character> {

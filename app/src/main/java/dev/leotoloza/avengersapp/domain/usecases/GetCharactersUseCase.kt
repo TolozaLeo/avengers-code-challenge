@@ -9,9 +9,8 @@ class GetCharactersUseCase
     private val repository: CharactersRepository,
 ) {
     suspend operator fun invoke(
-        limit: Int,
         offset: Int,
     ): Result<List<Character>> {
-        return repository.getCharacters(limit, offset)
+        return repository.getCharacters(20, offset)
     }
 }
