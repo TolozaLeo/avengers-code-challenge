@@ -65,3 +65,17 @@ Aquí puedes ver un adelanto del diseño en Adobe XD:
 - [ ] Testing unitario e instrumentado.  
 
 ---
+
+## ⚙️ Instalación y configuración (Android)
+1. Clonar el repositorio:  
+   ```bash
+   git clone https://github.com/TolozaLeo/avengers-code-challenge.git
+   ```
+2. Crear una cuenta en [Marvel Developer](https://developer.marvel.com/) y obtener tus API Keys.
+3. En el archivo local.properties agregar:
+   ```bash
+   MARVEL_PUBLIC_KEY=tu_public_key
+   MARVEL_PRIVATE_KEY=tu_private_key
+   ```
+4. Abrir el proyecto en Android Studio.
+5. Ejecutar la app en un dispositivo o emulador Android.
