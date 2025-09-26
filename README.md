@@ -1,26 +1,41 @@
-# 🦸‍♂️ Marvel app - code challenge
+# Marvel app - code challenge
 
-![Kotlin](https://img.shields.io/badge/Kotlin-1.9-blueviolet?logo=kotlin&logoColor=white)
-![Android](https://img.shields.io/badge/Android-14-green?logo=android&logoColor=white)
-![Compose](https://img.shields.io/badge/Jetpack_Compose-UI-orange?logo=jetpackcompose&logoColor=white)
 ![Status](https://img.shields.io/badge/Estado-En%20desarrollo-yellow)
+![Kotlin](https://img.shields.io/badge/Kotlin-2.0.21-blueviolet?logo=kotlin&logoColor=white)
+![Android](https://img.shields.io/badge/Android-15-green?logo=android&logoColor=white)
+![Compose](https://img.shields.io/badge/Jetpack_Compose-UI-orange?logo=jetpackcompose&logoColor=white)
+![MVVM](https://img.shields.io/badge/Architecture-MVVM-informational)
+![Coil](https://img.shields.io/badge/Coil-Image%20Loader-blue)
+![Retrofit2](https://img.shields.io/badge/Retrofit2-Networking-orange)
+![Dagger Hilt](https://img.shields.io/badge/Dagger_Hilt-DI-success)
+![JUnit](https://img.shields.io/badge/JUnit-Testing-red)
+![Mockk](https://img.shields.io/badge/Mockk-Mocking-lightgrey)
+![Firebase](https://img.shields.io/badge/Firebase-Backend-yellow?logo=firebase&logoColor=white)
 
-Aplicación móvil nativa Android que conecta con la **API pública de Marvel** para explorar héroes, villanos y eventos del universo Marvel.  
+Aplicación móvil nativa Android para explorar héroes, villanos y eventos del universo Marvel.  
+Los datos se obtienen de la API pública de Marvel Developer Portal.
 
 🚧 **Estado del proyecto:** En desarrollo  
 Este proyecto está en construcción constante: se añadirán nuevas funcionalidades y mejoras progresivamente.  
 
 ---
 
+## 📌 Notas  
+Este proyecto es un **desafío personal** como del tipo "code challenge" para profundizar en buenas prácticas de desarrollo Android, diseño de arquitectura y exploración de APIs públicas.  
+Aquí demuestro mis conocimientos y mi forma de programar.
+
+---
+
 ## ✨ Características (en progreso)
 - 📖 Listado de personajes con información oficial.  
 - 🔍 Detalles de cada héroe o villano.  
-- 📅 Eventos y sagas de Marvel.  
-- 🎯 Búsqueda dinámica y navegación intuitiva.  
+- 📅 Eventos llevados a cabo por Marvel.  
+- 🎯 Navegación intuitiva.  
 - 🧩 Arquitectura moderna: **Hexagonal + MVVM**.  
 - 🔌 Inyección de dependencias con **Hilt**.  
-- 🌐 Consumo de API con **Retrofit**.  
-- 🎨 UI declarativa con **Jetpack Compose**.  
+- 🌐 Consumo de API con **Retrofit2**.  
+- 🎨 UI declarativa con **Jetpack Compose**.
+- 🔐 Autenticación de usuarios: registro e inicio de sesión seguro con Firebase OAuth.
 
 ---
 
@@ -36,20 +51,17 @@ Aquí puedes ver un adelanto del diseño en Adobe XD:
 - **UI:** Jetpack Compose  
 - **Arquitectura:** Hexagonal + MVVM  
 - **Inyección de dependencias:** Hilt  
-- **Red:** Retrofit  
-- **Navegación:** Navigation Component  
+- **Red:** Retrofit2  
+- **Navegación:** Navigation Component + Jetpack Compose  
+- **Imágenes:** Coil  
+- **Backend/Servicios:** Firebase  
+- **Testing:** JUnit  
 
 ---
 
 ## 🚀 Roadmap
+- [ ] Conexión a la API publica de Marvel
 - [ ] Autenticación con Firebase (login de usuarios).  
-- [ ] Sistema de favoritos con almacenamiento remoto.  
-- [ ] Animaciones y transiciones mejoradas.  
 - [ ] Testing unitario e instrumentado.  
-
----
-
-## 📌 Notas
-Este proyecto es un **desafío personal** para profundizar en buenas prácticas de desarrollo Android, diseño de arquitectura y exploración de APIs públicas.  
 
 ---
