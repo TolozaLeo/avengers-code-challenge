@@ -47,7 +47,7 @@ class CharactersViewModel
         }
     }
 
-    fun getCharacterById(id: Int): Character? {
+    fun getCharacterById(id: Long): Character? {
         return cachedCharacters.find { it.id == id }
     }
 
