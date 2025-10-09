@@ -9,7 +9,7 @@ sealed class Screens(val route: String){
 
     @Serializable
     object CharacterDetail: Screens(route = "character_detail_screen/{characterId}") {
-        fun createRoute(characterId: Int) = "character_detail_screen/$characterId"
+        fun createRoute(characterId: Long) = "character_detail_screen/$characterId"
         const val NAV_ARG_CHARACTER_ID = "characterId"
     }
 

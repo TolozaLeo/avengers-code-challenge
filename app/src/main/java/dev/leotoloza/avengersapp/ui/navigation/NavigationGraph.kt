@@ -66,13 +66,13 @@ fun NavGraph(
                 }
                 composable(
                     route = Screens.CharacterDetail.route,
-                    arguments = listOf(navArgument(Screens.CharacterDetail.NAV_ARG_CHARACTER_ID) { type = NavType.IntType })
+                    arguments = listOf(navArgument(Screens.CharacterDetail.NAV_ARG_CHARACTER_ID) { type = NavType.LongType })
                 ) { entry ->
                     val parentEntry = remember(entry) {
                         navController.getBackStackEntry(CHARACTERS_GRAPH_ROUTE)
                     }
                     val charactersViewModel: CharactersViewModel = hiltViewModel(parentEntry)
-                    val selectedCharacterId = entry.arguments?.getInt(Screens.CharacterDetail.NAV_ARG_CHARACTER_ID)
+                    val selectedCharacterId = entry.arguments?.getLong(Screens.CharacterDetail.NAV_ARG_CHARACTER_ID)
                     val character: Character? = selectedCharacterId?.let { charactersViewModel.getCharacterById(it) }
 
                     character?.let { char ->

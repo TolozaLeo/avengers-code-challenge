@@ -6,7 +6,6 @@ import javax.inject.Inject
 
 class EventsRepositoryImpl @Inject constructor(): EventsRepository {
     override suspend fun getEvents(
-        limit: Int,
         offset: Int
     ): Result<List<Event>> {
         return try {
