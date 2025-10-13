@@ -6,5 +6,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Comic(
     val title: String,
-    val year: Int,
+    val year: String,
 ) : Parcelable

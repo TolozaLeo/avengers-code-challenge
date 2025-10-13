@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun ComicCard(
     comicTitle: String,
-    comicYear: Int,
+    comicYear: String,
 ) {
     Box(
         modifier = Modifier
@@ -39,7 +39,7 @@ fun ComicCard(
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = comicYear.toString(),
+                text = comicYear,
                 color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
                 style = MaterialTheme.typography.bodyMedium,
             )

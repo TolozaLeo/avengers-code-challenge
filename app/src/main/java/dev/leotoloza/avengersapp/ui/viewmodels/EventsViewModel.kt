@@ -61,7 +61,7 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 1",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 1.1", 2020), Comic("Comic 1.2", 2021)
+                    Comic("Comic 1.1", "2020"), Comic("Comic 1.2", "2021")
                 )
             ), Event(
                 id = 2,
@@ -69,16 +69,16 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 2",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 2.1", 2020),
-                    Comic("Comic 2.2", 2021),
-                    Comic("Comic 2.3", 2021),
-                    Comic("Comic 2.4", 2021),
-                    Comic("Comic 2.5", 2021),
-                    Comic("Comic 2.6", 2021),
-                    Comic("Comic 2.7", 2021),
-                    Comic("Comic 2.8", 2021),
-                    Comic("Comic 2.9", 2021),
-                    Comic("Comic 2.10", 2021),
+                    Comic("Comic 2.1", "2020"),
+                    Comic("Comic 2.2", "2021"),
+                    Comic("Comic 2.3", "2021"),
+                    Comic("Comic 2.4", "2021"),
+                    Comic("Comic 2.5", "2021"),
+                    Comic("Comic 2.6", "2021"),
+                    Comic("Comic 2.7", "2021"),
+                    Comic("Comic 2.8", "2021"),
+                    Comic("Comic 2.9", "2021"),
+                    Comic("Comic 2.10", "2021"),
                 )
             ), Event(
                 id = 3,
@@ -86,7 +86,7 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 3",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 3.1", 2022), Comic("Comic 3.2", 2023)
+                    Comic("Comic 3.1", "2022"), Comic("Comic 3.2", "2023")
                 )
             ), Event(
                 id = 4,
@@ -94,10 +94,10 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 4",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 4.1", 2020),
-                    Comic("Comic 4.2", 2021),
-                    Comic("Comic 4.3", 2021),
-                    Comic("Comic 4.4", 2021),
+                    Comic("Comic 4.1", "2021"),
+                    Comic("Comic 4.2", "2021"),
+                    Comic("Comic 4.3", "2021"),
+                    Comic("Comic 4.4", "2021"),
                 )
             ), Event(
                 id = 5,
@@ -105,9 +105,9 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 5",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 5.1", 2022),
-                    Comic("Comic 5.2", 2023),
-                    Comic("Comic 5.3 Lorem ipsum texto de ejemplo", 2023),
+                    Comic("Comic 5.1", "2021"),
+                    Comic("Comic 5.2", "2021"),
+                    Comic("Comic 5.3 Lorem ipsum texto de ejemplo", "2021"),
                 )
             ), Event(
                 id = 6,
@@ -115,7 +115,7 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 6",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 6.1", 2020), Comic("Comic 6.2", 2021)
+                    Comic("Comic 6.1", "2021"), Comic("Comic 6.2", "2021")
                 )
             ), Event(
                 id = 7,
@@ -123,7 +123,7 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 7",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 7.1", 2022), Comic("Comic 7.2", 2023)
+                    Comic("Comic 7.1", "2021"), Comic("Comic 7.2", "2021")
                 )
             ), Event(
                 id = 8,
@@ -131,7 +131,7 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 8",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 8.1", 2020), Comic("Comic 8.2", 2021)
+                    Comic("Comic 8.1", "2021"), Comic("Comic 8.2", "2021")
                 )
             ), Event(
                 id = 9,
@@ -139,7 +139,7 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 9",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 9.1", 2022), Comic("Comic 9.2", 2023)
+                    Comic("Comic 9.1", "2021"), Comic("Comic 9.2", "2021")
                 )
             ), Event(
                 id = 10,
@@ -147,7 +147,7 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 10",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 10.1", 2020), Comic("Comic 10.2", 2021)
+                    Comic("Comic 10.1", "2021"), Comic("Comic 10.2", "2021")
                 )
             ), Event(
                 id = 11,
@@ -155,7 +155,7 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 11",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 11.1", 2022), Comic("Comic 11.2", 2023)
+                    Comic("Comic 11.1", "2021"), Comic("Comic 11.2", "2021")
                 )
             ), Event(
                 id = 12,
@@ -163,7 +163,7 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 12",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 12.1", 2020), Comic("Comic 12.2", 2021)
+                    Comic("Comic 12.1", "2021"), Comic("Comic 12.2", "2021")
                 )
             ), Event(
                 id = 13,
@@ -171,7 +171,7 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 13",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 13.1", 2022), Comic("Comic 13.2", 2023)
+                    Comic("Comic 13.1", "2021"), Comic("Comic 13.2", "2021")
                 )
             ), Event(
                 id = 14,
@@ -179,7 +179,7 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 14",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 14.1", 2020), Comic("Comic 14.2", 2021)
+                    Comic("Comic 14.1", "2021"), Comic("Comic 14.2", "2021")
                 )
             ), Event(
                 id = 15,
@@ -187,7 +187,7 @@ class EventsViewModel @Inject constructor(
                 description = "Description for Event 15",
                 thumbnailUrl = "https://picsum.photos/300/300",
                 comics = listOf(
-                    Comic("Comic 15.1", 2022), Comic("Comic 15.2", 2023)
+                    Comic("Comic 15.1", "2021"), Comic("Comic 15.2", "2021")
                 )
             )
         )

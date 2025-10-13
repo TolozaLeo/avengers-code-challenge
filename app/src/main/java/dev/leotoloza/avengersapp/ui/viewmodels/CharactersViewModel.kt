@@ -6,7 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.leotoloza.avengersapp.domain.model.Character
 import dev.leotoloza.avengersapp.domain.model.Comic
 import dev.leotoloza.avengersapp.domain.usecases.GetCharactersUseCase
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -33,17 +32,34 @@ class CharactersViewModel
         getCharacters(0)
     }
 
+//    private fun getCharacters(offset: Int) {
+//        if (cachedCharacters.isNotEmpty()) {// Si hay datos en caché los muestra
+//            _uiState.value = CharactersUiState.Success(cachedCharacters)
+//            return
+//        }
+//        viewModelScope.launch {
+//            _uiState.value = CharactersUiState.Loading
+//            delay(1000) // Simula una carga de datos
+//            val list = getHardCodedList()
+//            cachedCharacters.addAll(list)
+//            _uiState.value = CharactersUiState.Success(list)
+//        }
+//    }
+
     private fun getCharacters(offset: Int) {
-        if (cachedCharacters.isNotEmpty()) {// Solo carga si no hay datos en caché
+        if (cachedCharacters.isNotEmpty()) {// Si hay datos en caché los muestra
             _uiState.value = CharactersUiState.Success(cachedCharacters)
             return
         }
         viewModelScope.launch {
-            _uiState.value = CharactersUiState.Loading
-            delay(1000) // Simula una carga de datos
-            val list = getHardCodedList()
-            cachedCharacters.addAll(list)
-            _uiState.value = CharactersUiState.Success(list)
+            getCharactersUseCase(offset)
+                .onSuccess { characters ->
+                    cachedCharacters.addAll(characters)
+                    _uiState.value = CharactersUiState.Success(cachedCharacters)
+                }
+                .onFailure { error ->
+                    _uiState.value = CharactersUiState.Error(error.message ?: "Unknown Error")
+                }
         }
     }
 
@@ -53,10 +69,10 @@ class CharactersViewModel
 
     private fun getHardCodedList(): List<Character> {
         val comics = listOf(
-            Comic("Iron Man (1968) #55", 1973),
-            Comic("Avengers (1963) #125", 1974),
-            Comic("Silver Surfer (1987) #38", 1990),
-            Comic("Thanos Quest (1990) #1", 1990)
+            Comic("Iron Man (1968) #55", "1973"),
+            Comic("Avengers (1963) #125", "1974"),
+            Comic("Silver Surfer (1987) #38", "1990"),
+            Comic("Thanos Quest (1990) #1", "1990")
         )
         val list: List<Character> = listOf(
             Character(

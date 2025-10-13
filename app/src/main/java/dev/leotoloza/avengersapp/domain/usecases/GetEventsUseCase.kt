@@ -11,6 +11,6 @@ class GetEventsUseCase
     suspend operator fun invoke(
         offset: Int,
     ): Result<List<Event>> {
-        return repository.getEvents(20, offset)
+        return repository.getEvents(offset)
     }
 }

@@ -11,6 +11,6 @@ class GetCharactersUseCase
     suspend operator fun invoke(
         offset: Int,
     ): Result<List<Character>> {
-        return repository.getCharacters(20, offset)
+        return repository.getCharacters(offset)
     }
 }

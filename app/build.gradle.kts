@@ -87,4 +87,8 @@ dependencies {
     implementation(libs.google.dagger.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.google.dagger.hilt.android.compiler)
+//    Retrofit2 con Moshi Converter
+    implementation (libs.moshi.kotlin)
+    implementation (libs.converter.moshi)
+
 }

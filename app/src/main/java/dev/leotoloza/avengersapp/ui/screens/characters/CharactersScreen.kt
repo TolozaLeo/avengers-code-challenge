@@ -1,5 +1,6 @@
 package dev.leotoloza.avengersapp.ui.screens.characters
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavController
@@ -26,6 +27,7 @@ fun CharactersScreen(
         }
         is CharactersUiState.Error -> {
             // TODO Mostrar un mensaje de error
+            Log.e("CharactersScreen", "Error: ${uiState.errorMessage}")
         }
     }
 }
