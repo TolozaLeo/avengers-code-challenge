@@ -20,4 +20,10 @@ class AvengerApiService @Inject constructor(
         hash = hashKey,
         offset = (page * CHARACTERS_PER_PAGE),
     )
+
+    suspend fun getEvents(page: Int) = apiClient.getEvents(
+        publicApiKey = publicKey,
+        hash = hashKey,
+        offset = (page * EVENTS_PER_PAGE),
+    )
 }

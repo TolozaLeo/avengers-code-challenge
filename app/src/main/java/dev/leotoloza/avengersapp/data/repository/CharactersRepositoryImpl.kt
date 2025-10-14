@@ -9,12 +9,13 @@ import javax.inject.Inject
 class CharactersRepositoryImpl @Inject constructor(
     private val apiService: AvengerApiService
 ) : CharactersRepository {
-    override suspend fun getCharacters(offset: Int): Result<List<Character>> {
+    override suspend fun getCharacters(page: Int): Result<List<Character>> {
         return try{
-            val response = apiService.getCharacters(offset)
+            val response = apiService.getCharacters(page)
             val characters = response.data.results.map{ it.toDomain() }
             Result.success(characters)
         } catch (e: Exception) {
+            //TODO Manejar mensajes de error con un wrapper
             Result.failure(e)
         }
     }

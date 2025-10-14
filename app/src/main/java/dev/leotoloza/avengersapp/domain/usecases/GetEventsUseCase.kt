@@ -9,8 +9,8 @@ class GetEventsUseCase
     private val repository: EventsRepository,
 ) {
     suspend operator fun invoke(
-        offset: Int,
+        page: Int,
     ): Result<List<Event>> {
-        return repository.getEvents(offset)
+        return repository.getEvents(page)
     }
 }

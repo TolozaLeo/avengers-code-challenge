@@ -3,5 +3,5 @@ package dev.leotoloza.avengersapp.domain.repository
 import dev.leotoloza.avengersapp.domain.model.Event
 
 interface EventsRepository {
-    suspend fun getEvents(offset : Int): Result<List<Event>>
+    suspend fun getEvents(page : Int): Result<List<Event>>
 }
