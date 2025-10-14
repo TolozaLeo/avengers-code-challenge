@@ -1,8 +1,9 @@
 package dev.leotoloza.avengersapp.domain.model
 
-data class Event (
+data class Event(
     val id: Long,
     val title: String,
+    val startDate: String,
     val description: String,
     val thumbnailUrl: String,
     val comics: List<Comic>,

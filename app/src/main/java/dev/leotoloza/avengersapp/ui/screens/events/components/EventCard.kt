@@ -46,7 +46,6 @@ fun EventCard(
 ) {
     var isExpanded by remember { mutableStateOf(false) }
 
-
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -73,8 +72,7 @@ fun EventCard(
             }
             Spacer(modifier = Modifier.width(16.dp))
             Column(
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.weight(1f)
+                verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.weight(1f)
             ) {
                 Text(
                     text = event.title,
@@ -84,31 +82,30 @@ fun EventCard(
                     maxLines = 1,
                 )
                 Text(
-                    text = event.description,
+                    text = event.startDate,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 8.dp, bottom = 28.dp, end = 30.dp),
                     color = MaterialTheme.colorScheme.onSecondary,
-                    maxLines = 2,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
             }
-            val arrowIcon = if (isExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown
+            val arrowIcon =
+                if (isExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown
             Icon(
                 imageVector = arrowIcon,
                 tint = Color.Black,
                 contentDescription = if (isExpanded) "Colapsar" else "Expandir",
-                modifier = Modifier
-                    .padding(top = 48.dp, bottom = 48.dp, end = 24.dp)
+                modifier = Modifier.padding(top = 48.dp, bottom = 48.dp, end = 24.dp)
             )
         }
         AnimatedVisibility(
             visible = isExpanded,
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Spacer(modifier = Modifier.height(11.dp))
@@ -118,10 +115,14 @@ fun EventCard(
                     style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(modifier = Modifier.height(14.dp))
-                event.comics.forEach { comic ->
-                    ComicCard(
-                        comicTitle = comic.title, comicYear = comic.year
-                    )
+                if (event.comics.isEmpty()) {
+                    ComicCard(comicTitle = "None", comicYear = "Nothing to see here...")
+                } else {
+                    event.comics.forEach { comic ->
+                        ComicCard(
+                            comicTitle = comic.title, comicYear = comic.year
+                        )
+                    }
                 }
                 Spacer(modifier = Modifier.height(20.dp))
             }
@@ -136,6 +137,7 @@ fun EventCardPreview() {
         Event(
             id = 1,
             title = "Title",
+            startDate = "10 de enero de 2010",
             description = "Description",
             thumbnailUrl = "https://picsum.photos/86/86",
             comics = emptyList()
