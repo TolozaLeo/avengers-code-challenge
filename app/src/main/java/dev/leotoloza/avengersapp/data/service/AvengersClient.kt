@@ -10,7 +10,7 @@ const val TIME_STAMP = 1L
 const val CHARACTERS_PER_PAGE = 15
 
 const val EVENTS_PER_PAGE = 25
-const val START_DATE = "-startDate" //Ordena de mas reciente a mas antiguo
+//const val START_DATE = "-startDate" //Ordena de mas reciente a mas antiguo
 
 interface AvengersClient {
     @GET("characters")
@@ -29,6 +29,6 @@ interface AvengersClient {
         @Query("hash") hash: String,
         @Query("offset") offset: Int,
         @Query("limit") limit: Int = EVENTS_PER_PAGE,
-        @Query("orderBy") orderBy: String = START_DATE
+//        @Query("orderBy") orderBy: String = START_DATE
     ) : EventsResponse
 }

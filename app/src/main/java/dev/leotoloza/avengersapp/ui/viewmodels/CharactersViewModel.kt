@@ -3,6 +3,7 @@ package dev.leotoloza.avengersapp.ui.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.leotoloza.avengersapp.data.service.CHARACTERS_PER_PAGE
 import dev.leotoloza.avengersapp.domain.model.Character
 import dev.leotoloza.avengersapp.domain.usecases.GetCharactersUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,45 +11,63 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-sealed class CharactersUiState {
-    object Loading : CharactersUiState()
-    data class Success(val characters: List<Character>) : CharactersUiState()
-    data class Error(val errorMessage: String) : CharactersUiState()
-}
+data class CharactersUiState(
+    val isLoading: Boolean = true,
+    val characters: List<Character> = emptyList(),
+    val error: String? = null,
+    val isLoadingMore: Boolean = false, // Para el indicador de carga inferior
+    val allDataLoaded: Boolean = false // Para saber si llegamos al final
+)
 
 @HiltViewModel
 class CharactersViewModel
 @Inject constructor(
     private val getCharactersUseCase: GetCharactersUseCase,
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow<CharactersUiState>(CharactersUiState.Loading)
+    private val _uiState = MutableStateFlow(CharactersUiState())
     val uiState: StateFlow<CharactersUiState> = _uiState
 
-    // Guarda la lista para evitar recargar
-    private var cachedCharacters: MutableList<Character> = emptyList<Character>().toMutableList()
+    private var currentPage = 0
 
     init {
-        getCharacters(0)
+        getCharacters()
     }
 
-    private fun getCharacters(page: Int) {
-        if (cachedCharacters.isNotEmpty()) {// Si hay datos en caché los muestra
-            _uiState.value = CharactersUiState.Success(cachedCharacters)
-            return
-        }
+    fun getCharacters() {
+        // Evita múltiples llamadas si ya se está cargando o si se cargaron todos los datos
+        if (_uiState.value.isLoadingMore || _uiState.value.allDataLoaded) return
+
         viewModelScope.launch {
-            getCharactersUseCase(page)
-                .onSuccess { characters ->
-                    cachedCharacters.addAll(characters)
-                    _uiState.value = CharactersUiState.Success(cachedCharacters)
-                }
-                .onFailure { error ->
-                    _uiState.value = CharactersUiState.Error(error.message ?: "Unknown Error")
-                }
+            // Distingue entre la carga inicial y la paginación
+            if (currentPage == 0) {
+                _uiState.value = _uiState.value.copy(isLoading = true)
+            } else {
+                _uiState.value = _uiState.value.copy(isLoadingMore = true)
+            }
+
+            getCharactersUseCase(currentPage).onSuccess { newCharacters ->
+                _uiState.value = _uiState.value.copy(
+                    isLoading = false, isLoadingMore = false,
+                    // Añade los nuevos personajes a la lista existente
+                    characters = _uiState.value.characters + newCharacters,
+                    // Si la API devuelve menos elementos de los pedidos, asumimos que es la última página
+                    allDataLoaded = isAllDataLoaded(newCharacters.size)
+                )
+                currentPage++
+            }.onFailure {
+                _uiState.value = _uiState.value.copy(
+                    isLoading = false, isLoadingMore = false, error = it.message
+                )
+            }
         }
     }
 
     fun getCharacterById(id: Long): Character? {
-        return cachedCharacters.find { it.id == id }
+        return _uiState.value.characters.find { it.id == id }
+    }
+
+    private fun isAllDataLoaded(numberOfCharactersGotten: Int): Boolean {
+        // CHARACTERS_PER_PAGE es la cantidad que se pide para cargar por página
+        return numberOfCharactersGotten < CHARACTERS_PER_PAGE
     }
 }

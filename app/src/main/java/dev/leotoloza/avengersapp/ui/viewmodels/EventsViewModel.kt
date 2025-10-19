@@ -3,6 +3,7 @@ package dev.leotoloza.avengersapp.ui.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.leotoloza.avengersapp.data.service.EVENTS_PER_PAGE
 import dev.leotoloza.avengersapp.domain.model.Event
 import dev.leotoloza.avengersapp.domain.usecases.GetEventsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,40 +11,56 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-sealed class EventsUiState {
-    object Loading : EventsUiState()
-    data class Success(val events: List<Event>) : EventsUiState()
-    data class Error(val errorMessage: String) : EventsUiState()
-}
+data class EventsUiState(
+    val isLoading: Boolean = true,
+    val events: List<Event> = emptyList(),
+    val error: String? = null,
+    val isLoadingMore: Boolean = false, // Para el indicador de carga inferior
+    val allDataLoaded: Boolean = false // Para saber si llegamos al final
+)
 
 @HiltViewModel
 class EventsViewModel @Inject constructor(
     private val getEventsUseCase: GetEventsUseCase,
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow<EventsUiState>(EventsUiState.Loading)
+    private val _uiState = MutableStateFlow(EventsUiState())
     val uiState: StateFlow<EventsUiState> = _uiState
 
-    private var cachedEvents: MutableList<Event> = emptyList<Event>().toMutableList()
+    private var currentPage = 0
 
     init {
-        getEvents(0)
+        getEvents()
     }
 
-    fun getEvents(page: Int) {
-        if (cachedEvents.isNotEmpty()) {
-            _uiState.value = EventsUiState.Success(cachedEvents)
-            return
-        }
+    fun getEvents() {
+        if (_uiState.value.isLoadingMore || _uiState.value.allDataLoaded) return
         viewModelScope.launch {
-            _uiState.value = EventsUiState.Loading
-            getEventsUseCase(page).onSuccess { events ->
-                    cachedEvents.addAll(events)
-                    _uiState.value = EventsUiState.Success(cachedEvents)
-                }.onFailure { error ->
-                    _uiState.value = EventsUiState.Error(error.message ?: "Error de conexion")
-//                    cachedEvents.addAll(getHardCodedList()) Si hay un error, carga la lista hardcodeada
-//                    _uiState.value = EventsUiState.Success(cachedEvents)
-                }
+            // Distingue entre la carga inicial y la paginación
+            if (currentPage == 0) {
+                _uiState.value = _uiState.value.copy(isLoading = true)
+            } else {
+                _uiState.value = _uiState.value.copy(isLoadingMore = true)
+            }
+
+            getEventsUseCase(currentPage).onSuccess { newEvents ->
+                _uiState.value = _uiState.value.copy(
+                    isLoading = false, isLoadingMore = false,
+                    // Añade los nuevos eventos a la lista existente
+                    events = _uiState.value.events + newEvents,
+                    // Si la API devuelve menos elementos de los pedidos, asumimos que es la última página
+                    allDataLoaded = isAllDataLoaded(newEvents.size)
+                )
+                currentPage++
+            }.onFailure {
+                _uiState.value = _uiState.value.copy(
+                    isLoading = false, isLoadingMore = false, error = it.message
+                )
+            }
         }
+    }
+
+    private fun isAllDataLoaded(numberOfEventsGotten: Int): Boolean {
+//        EVENTS_PER_PAGE es la cantidad que se pide para cargar por página
+        return numberOfEventsGotten < EVENTS_PER_PAGE
     }
 }
