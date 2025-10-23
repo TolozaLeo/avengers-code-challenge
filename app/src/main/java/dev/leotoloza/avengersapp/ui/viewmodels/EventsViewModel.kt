@@ -59,6 +59,10 @@ class EventsViewModel @Inject constructor(
         }
     }
 
+    fun onErrorShown() {
+        _uiState.value = _uiState.value.copy(error = null)
+    }
+
     private fun isAllDataLoaded(numberOfEventsGotten: Int): Boolean {
 //        EVENTS_PER_PAGE es la cantidad que se pide para cargar por página
         return numberOfEventsGotten < EVENTS_PER_PAGE

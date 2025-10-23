@@ -1,11 +1,9 @@
 package dev.leotoloza.avengersapp.ui.navigation
 
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -27,13 +25,12 @@ internal const val CHARACTERS_GRAPH_ROUTE = "characters_graph"
 @Composable
 fun NavGraph(
     navController: NavHostController,
-    innerPadding: PaddingValues,
+    snackbarHostState: SnackbarHostState,
     onTitleChange: (String) -> Unit,
 ) {
     NavHost(
         navController = navController,
         startDestination = Screens.Splash.route,
-        modifier = Modifier.padding(innerPadding)
     ) {
         composable(Screens.Splash.route) {
             SplashScreen(onNavigateToNextScreen = {
@@ -61,7 +58,9 @@ fun NavGraph(
                     }
                     val charactersViewModel: CharactersViewModel = hiltViewModel(parentEntry)
                     CharactersScreen(
-                        navController = navController, viewModel = charactersViewModel
+                        navController = navController,
+                        viewModel = charactersViewModel,
+                        snackbarHostState = snackbarHostState
                     )
                 }
                 composable(
@@ -80,7 +79,6 @@ fun NavGraph(
                         CharacterDetailScreen(character = char)
                     } ?: run { // Si character es null (id no valido), navega hacia atras
                         LaunchedEffect(Unit) {
-                            //TODO mostrar mensaje de error
                             navController.navigateUp()
                         }
                     }
@@ -90,7 +88,9 @@ fun NavGraph(
             // EventsScreen es parte del grafo principal, no del de characters
             composable(Screens.Events.route) { entry ->
                 val eventsViewModel: EventsViewModel = hiltViewModel(entry)
-                EventsScreen(viewModel = eventsViewModel)
+                EventsScreen(
+                    viewModel = eventsViewModel,
+                    snackbarHostState = snackbarHostState)
             }
         }
     }

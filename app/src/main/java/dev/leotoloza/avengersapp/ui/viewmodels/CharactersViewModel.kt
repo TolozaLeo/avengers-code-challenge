@@ -51,15 +51,22 @@ class CharactersViewModel
                     // Añade los nuevos personajes a la lista existente
                     characters = _uiState.value.characters + newCharacters,
                     // Si la API devuelve menos elementos de los pedidos, asumimos que es la última página
-                    allDataLoaded = isAllDataLoaded(newCharacters.size)
+                    allDataLoaded = isAllDataLoaded(newCharacters.size),
+                    error = null
                 )
                 currentPage++
             }.onFailure {
                 _uiState.value = _uiState.value.copy(
-                    isLoading = false, isLoadingMore = false, error = it.message
+                    isLoading = false,
+                    isLoadingMore = false,
+                    error = it.message?: "Error desconocido. Inténtalo de nuevo."
                 )
             }
         }
+    }
+
+    fun onErrorShown() {
+        _uiState.value = _uiState.value.copy(error = null)
     }
 
     fun getCharacterById(id: Long): Character? {

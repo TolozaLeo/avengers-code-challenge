@@ -3,8 +3,12 @@ package dev.leotoloza.avengersapp.ui.screens
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.fadeIn
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,6 +30,7 @@ fun MainScreen() {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination?.route
 
+        val snackbarHostState = remember { SnackbarHostState() }
         val shouldShowTopBar = currentDestination != Screens.Splash.route
         var topBarTitle by remember { mutableStateOf("Marvel Challenge") }
 
@@ -49,12 +54,19 @@ fun MainScreen() {
                         navController = navController
                     )
                 }
-            }
+            },
+            snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
         ) { innerPadding ->
-            NavGraph(
-                navController = navController,
-                innerPadding = innerPadding,
-                onTitleChange = { newTitle -> topBarTitle = newTitle })
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+            ) {
+                NavGraph(
+                    navController = navController,
+                    snackbarHostState = snackbarHostState,
+                    onTitleChange = { newTitle -> topBarTitle = newTitle })
+            }
         }
     }
 }
