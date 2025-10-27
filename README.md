@@ -51,7 +51,7 @@ Aquí puedes ver un adelanto del diseño en Adobe XD:
 - **UI:** Jetpack Compose  
 - **Arquitectura:** Hexagonal + MVVM  
 - **Inyección de dependencias:** Hilt  
-- **Red:** Retrofit2  
+- **Red:** Retrofit2 + Moshi
 - **Navegación:** Navigation Component + Jetpack Compose  
 - **Imágenes:** Coil  
 - **Backend/Servicios:** Firebase  
@@ -60,7 +60,6 @@ Aquí puedes ver un adelanto del diseño en Adobe XD:
 ---
 
 ## 🚀 Roadmap
-- [ ] Conexión a la API publica de Marvel
 - [ ] Autenticación con Firebase (login de usuarios).  
 - [ ] Testing unitario e instrumentado.  
 
@@ -72,10 +71,10 @@ Aquí puedes ver un adelanto del diseño en Adobe XD:
    git clone https://github.com/TolozaLeo/avengers-code-challenge.git
    ```
 2. Crear una cuenta en [Marvel Developer](https://developer.marvel.com/) y obtener tus API Keys.
-3. En el archivo local.properties agregar:
+3. Abrir el proyecto en Android Studio.
+4. En el archivo local.properties agregar:
    ```bash
    MARVEL_PUBLIC_KEY=tu_public_key
    MARVEL_PRIVATE_KEY=tu_private_key
    ```
-4. Abrir el proyecto en Android Studio.
 5. Ejecutar la app en un dispositivo o emulador Android.
