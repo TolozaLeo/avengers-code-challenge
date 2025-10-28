@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.leotoloza.avengersapp.data.service.EVENTS_PER_PAGE
 import dev.leotoloza.avengersapp.domain.model.Event
 import dev.leotoloza.avengersapp.domain.usecases.GetEventsUseCase
+import dev.leotoloza.avengersapp.ui.utils.UiErrorProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -22,6 +23,7 @@ data class EventsUiState(
 @HiltViewModel
 class EventsViewModel @Inject constructor(
     private val getEventsUseCase: GetEventsUseCase,
+    private val errorProvider: UiErrorProvider,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(EventsUiState())
     val uiState: StateFlow<EventsUiState> = _uiState
@@ -51,9 +53,11 @@ class EventsViewModel @Inject constructor(
                     allDataLoaded = isAllDataLoaded(newEvents.size)
                 )
                 currentPage++
-            }.onFailure {
+            }.onFailure { exception ->
                 _uiState.value = _uiState.value.copy(
-                    isLoading = false, isLoadingMore = false, error = it.message
+                    isLoading = false,
+                    isLoadingMore = false,
+                    error = errorProvider.getErrorMessage(exception)
                 )
             }
         }

@@ -1,4 +1,4 @@
-package dev.leotoloza.avengersapp.domain.utils
+package dev.leotoloza.avengersapp.ui.utils
 
 fun String.replaceHttpForHttps(): String {
     return replace("http://", "https://")

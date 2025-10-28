@@ -1,7 +1,7 @@
 package dev.leotoloza.avengersapp.data.remote.mapper
 
 import dev.leotoloza.avengersapp.data.remote.model.Event
-import dev.leotoloza.avengersapp.domain.utils.replaceHttpForHttps
+import dev.leotoloza.avengersapp.ui.utils.replaceHttpForHttps
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.leotoloza.avengersapp.data.service.CHARACTERS_PER_PAGE
 import dev.leotoloza.avengersapp.domain.model.Character
 import dev.leotoloza.avengersapp.domain.usecases.GetCharactersUseCase
+import dev.leotoloza.avengersapp.ui.utils.UiErrorProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -23,10 +24,10 @@ data class CharactersUiState(
 class CharactersViewModel
 @Inject constructor(
     private val getCharactersUseCase: GetCharactersUseCase,
+    private val errorProvider: UiErrorProvider,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(CharactersUiState())
     val uiState: StateFlow<CharactersUiState> = _uiState
-
     private var currentPage = 0
 
     init {
@@ -55,11 +56,11 @@ class CharactersViewModel
                     error = null
                 )
                 currentPage++
-            }.onFailure {
+            }.onFailure { exception ->
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
                     isLoadingMore = false,
-                    error = it.message?: "Error desconocido. Inténtalo de nuevo."
+                    error = errorProvider.getErrorMessage(exception)
                 )
             }
         }

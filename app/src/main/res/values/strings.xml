@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Avengers App</string>
     <string name="marvel_challenge">Marvel Challenge</string>
+    <string name="generic_error">Ha ocurrido un error inesperado. Por favor reintente más tarde.</string>
+    <string name="error_bad_connection">Error de red. Verifica tu conexión.</string>
+    <string name="error_bad_request">Petición incorrecta.</string>
+    <string name="error_forbidden">No tienes permisos para este recurso.</string>
+    <string name="error_request_time_out">La petición ha tardado demasiado. Verifica tu conexión.</string>
+    <string name="error_internal_server_error">Error interno del servidor. Por favor reintente más tarde.</string>
+    <string name="error_service_unavailable">Servicio no disponible temporalmente. Por favor reintente más tarde.</string>
 </resources>
