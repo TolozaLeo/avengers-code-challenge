@@ -55,7 +55,7 @@ fun CharacterCard(
                 AsyncImage(
                     model = createImageRequest(character.thumbnailUrl),
                     contentDescription = "Character thumbnail",
-                    contentScale = ContentScale.Crop,
+                    contentScale = ContentScale.Fit,
                     placeholder = painterResource(R.drawable.img_character_placeholder),
                     modifier = Modifier.fillMaxSize()
                 )

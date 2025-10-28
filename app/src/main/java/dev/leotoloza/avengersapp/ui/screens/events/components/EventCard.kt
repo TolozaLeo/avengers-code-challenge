@@ -63,7 +63,7 @@ fun EventCard(
                 AsyncImage(
                     model = createImageRequest(event.thumbnailUrl),
                     contentDescription = "Event thumbnail",
-                    contentScale = ContentScale.Crop,
+                    contentScale = ContentScale.Fit,
                     placeholder = painterResource(R.drawable.img_character_placeholder),
                     modifier = Modifier
                         .size(86.dp)

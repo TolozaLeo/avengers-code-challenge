@@ -33,7 +33,7 @@ fun CharacterDetailScreen(character: Character) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(1f),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Fit
             )
             Spacer(modifier = Modifier.height(21.dp))
             Text(
