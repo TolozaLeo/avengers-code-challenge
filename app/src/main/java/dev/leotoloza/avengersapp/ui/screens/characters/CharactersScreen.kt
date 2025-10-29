@@ -28,7 +28,8 @@ fun CharactersScreen(
             scope.launch {
                 val result = snackbarHostState.showSnackbar(
                     message = errorMsg,
-                    actionLabel = "Reintentar"
+                    withDismissAction = true,
+                    actionLabel = "Reintentar",
                 )
                 // Si el usuario presiona "Reintentar", llama al ViewModel
                 if (result == SnackbarResult.ActionPerformed) {
