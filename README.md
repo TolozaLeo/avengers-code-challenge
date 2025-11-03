@@ -1,7 +1,7 @@
 # Marvel app - code challenge
 ## 📑 Table of Contents
-- 🇪🇸 [Versión en Español](#es-versión-en-español)
-- 🇬🇧 [English Version](#🇬🇧-English-Version)
+- 🇪🇸 [Versión en Español](#versión-en-español)
+- 🇬🇧 [English Version](#english-version)
 
 ![Kotlin](https://img.shields.io/badge/Kotlin-2.0.21-blueviolet?logo=kotlin&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-15-green?logo=android&logoColor=white)
