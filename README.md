@@ -15,9 +15,6 @@
 Aplicación móvil nativa Android para explorar héroes, villanos y eventos del universo Marvel.  
 Los datos se obtienen de la API pública de Marvel Developer Portal.
 
-🚧 **Estado del proyecto:** En desarrollo  
-Este proyecto está en construcción constante: se añadirán nuevas funcionalidades y mejoras progresivamente.  
-
 ---
 
 ## 📌 Notas  
@@ -56,12 +53,6 @@ Aquí puedes ver un adelanto del diseño en Adobe XD:
 - **Imágenes:** Coil  
 - **Backend/Servicios:** Firebase  
 - **Testing:** JUnit  
-
----
-
-## 🚀 Roadmap
-- [ ] Autenticación con Firebase (login de usuarios).  
-- [ ] Testing unitario e instrumentado.  
 
 ---
 
