@@ -14,7 +14,7 @@ class CharactersRepositoryImpl @Inject constructor(
     override suspend fun getCharacters(page: Int): Result<List<Character>> {
         return try{
             val response = apiService.getCharacters(page)
-            val characters = response.data.results.map{ it.toDomain() }
+            val characters = response.data.map{ it.toDomain() }
             Result.success(characters)
         } catch (e: Exception) {
             Result.failure(errorHandler.getError(e))

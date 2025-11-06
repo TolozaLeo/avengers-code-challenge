@@ -28,7 +28,7 @@ class CharactersViewModel
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(CharactersUiState())
     val uiState: StateFlow<CharactersUiState> = _uiState
-    private var currentPage = 0
+    private var currentPage = 1
 
     init {
         getCharacters()

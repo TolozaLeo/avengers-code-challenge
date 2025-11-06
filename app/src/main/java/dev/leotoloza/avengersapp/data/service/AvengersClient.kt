@@ -1,5 +1,6 @@
 package dev.leotoloza.avengersapp.data.service
 
+import dev.leotoloza.avengersapp.data.remote.model.CharacterItem
 import dev.leotoloza.avengersapp.data.remote.model.CharactersResponse
 import dev.leotoloza.avengersapp.data.remote.model.EventsResponse
 import retrofit2.http.GET
@@ -14,14 +15,11 @@ const val EVENTS_PER_PAGE = 12
 //const val START_DATE = "-startDate" //Ordena de más reciente a más antiguo
 
 interface AvengersClient {
-    @GET("characters")
+    @GET("character")
     suspend fun getCharacters(
-        @Query("ts") ts: Long,
-        @Query("apikey") publicApiKey: String,
-        @Query("hash") hash: String,
-        @Query("offset") offset: Int,// a partir de que elemento se pide
-        @Query("limit") limit: Int = CHARACTERS_PER_PAGE,
-    ): CharactersResponse
+        @Query("page") page: Int = 1,
+        @Query("pageSize") pageSize: Int = 50 // La API de Disney soporta esto
+    ): CharactersResponse<CharacterItem>
 
     @GET("events")
     suspend fun getEvents(

@@ -14,7 +14,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
-private const val AVENGERS_API_URL = "https://gateway.marvel.com/v1/public/"
+private const val BASE_URL = "https://api.disneyapi.dev/"
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -50,7 +50,7 @@ object ServiceModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(AVENGERS_API_URL)
+            .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
             .build()

@@ -13,18 +13,10 @@ class AvengerApiService @Inject constructor(
     private val privateKey = BuildConfig.API_PRIVATE_KEY
 
     // Genera ts y hash nuevos para cada llamada
-    suspend fun getCharacters(page: Int) = run {
-        val ts = Date().time.toString()
-        val hash = hashKeyBuilder.build(
-            timestamp = ts, privateKey = privateKey, publicKey = publicKey
-        )
-        apiClient.getCharacters(
-            ts = ts.toLong(), // Pasa el ts nuevo
-            publicApiKey = publicKey,
-            hash = hash, // Pasa el hash nuevo
-            offset = (page * CHARACTERS_PER_PAGE),
-        )
-    }
+    suspend fun getCharacters(page: Int) = apiClient.getCharacters(
+        page = page,
+        pageSize = 25,
+    )
 
     suspend fun getEvents(page: Int) = run {
         val ts = Date().time.toString()
