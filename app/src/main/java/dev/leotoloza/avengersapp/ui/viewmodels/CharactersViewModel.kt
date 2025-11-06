@@ -40,7 +40,7 @@ class CharactersViewModel
 
         viewModelScope.launch {
             // Distingue entre la carga inicial y la paginación
-            if (currentPage == 0) {
+            if (currentPage == 1) {
                 _uiState.value = _uiState.value.copy(isLoading = true)
             } else {
                 _uiState.value = _uiState.value.copy(isLoadingMore = true)

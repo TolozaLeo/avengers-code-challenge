@@ -8,7 +8,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.leotoloza.avengersapp.BuildConfig
 import dev.leotoloza.avengersapp.data.service.AvengersClient
-import dev.leotoloza.avengersapp.data.service.security.HashKeyBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -60,11 +59,5 @@ object ServiceModule {
     @Singleton
     fun provideAvengersApiClient(retrofit: Retrofit): AvengersClient {
         return retrofit.create(AvengersClient::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideHashKeyBuilder(): HashKeyBuilder{
-        return HashKeyBuilder()
     }
 }
