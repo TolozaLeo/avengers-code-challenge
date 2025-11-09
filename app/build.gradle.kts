@@ -5,12 +5,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.daggerHiltAndroid)
     id("kotlin-parcelize")
-}
-// Acceder al local.properties para leer las API keys
-val localProperties = org.jetbrains.kotlin.konan.properties.Properties()
-val localPropertiesFile = rootProject.file("local.properties")
-if (localPropertiesFile.exists()) {
-    localProperties.load(localPropertiesFile.inputStream())
+    id("com.google.gms.google-services")
 }
 
 hilt {
@@ -29,15 +24,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        // Exponer las API keys como constantes BuildConfig para acceder desde código
-        val publicApiKey = localProperties.getProperty("API_PUBLIC_KEY", "")
-        buildConfigField("String", "API_PUBLIC_KEY", "\"$publicApiKey\"")
-        manifestPlaceholders["API_PUBLIC_KEY"] = publicApiKey
-
-        val privateApikey = localProperties.getProperty("API_PRIVATE_KEY", "")
-        buildConfigField("String", "API_PRIVATE_KEY", "\"$privateApikey\"")
-        manifestPlaceholders["API_PRIVATE_KEY"] = publicApiKey
     }
 
     buildTypes {
@@ -93,4 +79,7 @@ dependencies {
 //    OkHttp con Logging Interceptor
     implementation(platform(libs.okhttp.bom))
     implementation(libs.logging.interceptor)
+//    Firebase
+    implementation(platform("com.google.firebase:firebase-bom:34.5.0"))
+    implementation("com.google.firebase:firebase-analytics")
 }
