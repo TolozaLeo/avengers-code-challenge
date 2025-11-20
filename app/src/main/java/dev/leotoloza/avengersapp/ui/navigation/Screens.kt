@@ -14,7 +14,7 @@ sealed class Screens(val route: String){
     }
 
     @Serializable
-    object Events: Screens(route = "events_screen")
+    object PanelControl: Screens(route = "panel_control_screen")
     @Serializable
     object Splash: Screens(route = "splash_screen")
 }

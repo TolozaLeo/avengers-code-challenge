@@ -35,7 +35,7 @@ fun MainScreen() {
         var topBarTitle by remember { mutableStateOf("Marvel Challenge") }
 
         val shouldShowBottomBar =
-            currentDestination == Screens.Characters.route || currentDestination == Screens.Events.route
+            currentDestination == Screens.Characters.route || currentDestination == Screens.PanelControl.route
 
         Scaffold(
             modifier = Modifier.fillMaxSize(),

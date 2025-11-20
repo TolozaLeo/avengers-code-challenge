@@ -34,10 +34,10 @@ fun BottomBar(
             iconResUnselected = R.drawable.ic_superhero_disabled,
             contentDescription = "Characters"
         ), BottomNavItem(
-            route = Screens.Events.route, // ruta de eventsScreen
+            route = Screens.PanelControl.route, // ruta de eventsScreen
             iconResSelected = R.drawable.ic_calendar_enabled,
             iconResUnselected = R.drawable.ic_calendar_disabled,
-            contentDescription = "Events"
+            contentDescription = "Panel de Control"
         )
     )
 

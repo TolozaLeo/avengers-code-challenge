@@ -15,9 +15,9 @@ import dev.leotoloza.avengersapp.domain.model.Character
 import dev.leotoloza.avengersapp.ui.screens.SplashScreen
 import dev.leotoloza.avengersapp.ui.screens.characters.CharacterDetailScreen
 import dev.leotoloza.avengersapp.ui.screens.characters.CharactersScreen
-import dev.leotoloza.avengersapp.ui.screens.events.EventsScreen
+import dev.leotoloza.avengersapp.ui.screens.events.PanelControlScreen
 import dev.leotoloza.avengersapp.ui.viewmodels.CharactersViewModel
-import dev.leotoloza.avengersapp.ui.viewmodels.EventsViewModel
+import dev.leotoloza.avengersapp.ui.viewmodels.PanelControlViewModel
 
 internal const val MAIN_APP_GRAPH_ROUTE = "main_app_graph"
 internal const val CHARACTERS_GRAPH_ROUTE = "characters_graph"
@@ -86,11 +86,10 @@ fun NavGraph(
             }
 
             // EventsScreen es parte del grafo principal, no del de characters
-            composable(Screens.Events.route) { entry ->
-                val eventsViewModel: EventsViewModel = hiltViewModel(entry)
-                EventsScreen(
-                    viewModel = eventsViewModel,
-                    snackbarHostState = snackbarHostState)
+            composable(Screens.PanelControl.route) { entry ->
+                val panelControlViewModel: PanelControlViewModel = hiltViewModel(entry)
+                PanelControlScreen(
+                    viewModel = panelControlViewModel,)
             }
         }
     }
