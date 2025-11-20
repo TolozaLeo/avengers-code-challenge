@@ -15,6 +15,7 @@ import javax.inject.Inject
 data class CharactersUiState(
     val isLoading: Boolean = true,
     val characters: List<Character> = emptyList(),
+    val favorites: List<Character> = emptyList(),
     val error: String? = null,
     val isLoadingMore: Boolean = false, // Para el indicador de carga inferior
     val allDataLoaded: Boolean = false // Para saber si llegamos al final
@@ -24,6 +25,8 @@ data class CharactersUiState(
 class CharactersViewModel
 @Inject constructor(
     private val getCharactersUseCase: GetCharactersUseCase,
+    private val toggleFavoriteUseCase: dev.leotoloza.avengersapp.domain.usecases.ToggleFavoriteUseCase,
+    private val getFavoritesUseCase: dev.leotoloza.avengersapp.domain.usecases.GetFavoritesUseCase,
     private val errorProvider: UiErrorProvider,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(CharactersUiState())
@@ -32,6 +35,25 @@ class CharactersViewModel
 
     init {
         getCharacters()
+        observeFavorites()
+    }
+
+    private fun observeFavorites() {
+        viewModelScope.launch {
+            getFavoritesUseCase().collect { favorites ->
+                _uiState.value = _uiState.value.copy(favorites = favorites)
+            }
+        }
+    }
+
+    fun toggleFavorite(character: Character) {
+        viewModelScope.launch {
+            try {
+                toggleFavoriteUseCase(character)
+            } catch (e: Exception) {
+                _uiState.value = _uiState.value.copy(error = errorProvider.getErrorMessage(e))
+            }
+        }
     }
 
     fun getCharacters() {

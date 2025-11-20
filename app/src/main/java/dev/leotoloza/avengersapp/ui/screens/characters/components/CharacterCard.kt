@@ -13,12 +13,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -31,6 +37,8 @@ import dev.leotoloza.avengersapp.ui.screens.common.createImageRequest
 @Composable
 fun CharacterCard(
     character: Character,
+    isFavorite: Boolean,
+    onFavoriteClick: () -> Unit,
     onItemClicked: () -> Unit
 ) {
     Card(
@@ -64,13 +72,27 @@ fun CharacterCard(
             Column(
                 modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(
-                    text = character.name,
-                    style = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier.padding(top = 15.dp),
-                    color = MaterialTheme.colorScheme.onPrimary,
-                    maxLines = 1,
-                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = character.name,
+                        style = MaterialTheme.typography.titleLarge,
+                        modifier = Modifier
+                            .padding(top = 15.dp)
+                            .weight(1f),
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        maxLines = 1,
+                    )
+                    IconButton(onClick = onFavoriteClick) {
+                        Icon(
+                            imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                            contentDescription = "Favorite",
+                            tint = if (isFavorite) Color.Red else MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
+                }
                 Text(
                     text = character.description,
                     style = MaterialTheme.typography.bodyMedium,

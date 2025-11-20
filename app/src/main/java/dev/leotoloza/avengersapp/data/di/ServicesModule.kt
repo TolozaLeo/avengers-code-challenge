@@ -60,4 +60,10 @@ object ServiceModule {
     fun provideAvengersApiClient(retrofit: Retrofit): AvengersClient {
         return retrofit.create(AvengersClient::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideFirestore(): com.google.firebase.firestore.FirebaseFirestore {
+        return com.google.firebase.firestore.FirebaseFirestore.getInstance()
+    }
 }

@@ -48,9 +48,11 @@ fun CharactersScreen(
         else -> {
             CharactersList(
                 charactersList = uiState.characters,
+                favorites = uiState.favorites,
                 navController = navController,
                 isLoadingMore = uiState.isLoadingMore,
-                onLoadMore = { viewModel.getCharacters() }
+                onLoadMore = { viewModel.getCharacters() },
+                onToggleFavorite = { character -> viewModel.toggleFavorite(character) }
             )
         }
     }

@@ -26,9 +26,11 @@ import kotlinx.coroutines.flow.filter
 @Composable
 fun CharactersList(
     charactersList: List<Character>,
+    favorites: List<Character>,
     navController: NavController,
     isLoadingMore: Boolean,
-    onLoadMore: () -> Unit
+    onLoadMore: () -> Unit,
+    onToggleFavorite: (Character) -> Unit
 ) {
     val listState = rememberLazyListState()
 
@@ -42,7 +44,10 @@ fun CharactersList(
     ) {
         items(charactersList) { character ->
             CharacterCard(
-                character = character, onItemClicked = {
+                character = character,
+                isFavorite = favorites.any { it.id == character.id },
+                onFavoriteClick = { onToggleFavorite(character) },
+                onItemClicked = {
                     navController.navigate(Screens.CharacterDetail.createRoute(character.id))
                 })
         }

@@ -5,9 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Character(
-    val id: Long,
-    val name: String,
-    val description: String,
-    val thumbnailUrl: String,
-    val comics: List<Comic>,
+    val id: Long = 0,
+    val name: String = "",
+    val description: String = "",
+    val thumbnailUrl: String = "",
+    val comics: List<Comic> = emptyList(),
 ) : Parcelable
