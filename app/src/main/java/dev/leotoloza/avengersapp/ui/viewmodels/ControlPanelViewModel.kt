@@ -5,6 +5,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
+import kotlin.jvm.Throws
 
 data class EventsUiState(
     val isLoading: Boolean = false,
@@ -18,7 +19,7 @@ class PanelControlViewModel @Inject constructor(
     val uiState: StateFlow<EventsUiState> = _uiState
 
     fun onForceCrash() {
-        Thread.sleep(10000)
+        throw RuntimeException("Crash forzado desde el Panel de Control")
     }
 
     fun onErrorShown() {
