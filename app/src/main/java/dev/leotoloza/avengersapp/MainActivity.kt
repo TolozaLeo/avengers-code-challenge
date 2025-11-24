@@ -1,19 +1,19 @@
 package dev.leotoloza.avengersapp
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
+//import android.util.Log
+//import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.google.firebase.Firebase
-import com.google.firebase.remoteconfig.ConfigUpdate
+//import com.google.firebase.Firebase
+/* import com.google.firebase.remoteconfig.ConfigUpdate
 import com.google.firebase.remoteconfig.ConfigUpdateListener
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
 import com.google.firebase.remoteconfig.customSignals
 import com.google.firebase.remoteconfig.get
 import com.google.firebase.remoteconfig.remoteConfig
-import com.google.firebase.remoteconfig.remoteConfigSettings
+import com.google.firebase.remoteconfig.remoteConfigSettings */
 import dagger.hilt.android.AndroidEntryPoint
 import dev.leotoloza.avengersapp.ui.screens.MainScreen
 
@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
         }
 
         // INICIO - OnCreate - RemoteConfig
-        val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
+        /*val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
 
         val configSettings = remoteConfigSettings {
             minimumFetchIntervalInSeconds = 3600
@@ -77,12 +77,12 @@ class MainActivity : ComponentActivity() {
             override fun onError(error: FirebaseRemoteConfigException) {
                 Log.w(TAG, "Config update error with code: " + error.code, error)
             }
-        })
+        })*/
         // FIN    - OnCreate -  RemoteConfig
     }
 
     // INICIO - RemoteConfig
-    private fun displayWelcomeMessage() {
+    /*private fun displayWelcomeMessage() {
         val remoteConfig = Firebase.remoteConfig
 
         // [START get_config_values]
@@ -95,6 +95,6 @@ class MainActivity : ComponentActivity() {
 
         // Remote Config keys
         private const val WELCOME_MESSAGE_KEY = "welcome_message"
-    }
+    }*/
     // FIN    - RemoteConfig
 }
