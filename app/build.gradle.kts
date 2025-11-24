@@ -84,4 +84,5 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-crashlytics-ndk")
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.firebaseui:firebase-ui-auth:9.0.0")
 }
