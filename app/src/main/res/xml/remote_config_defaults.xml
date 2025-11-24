@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><defaults>
+  <entry>
+    <key>OS</key>
+    <value>default</value>
+  </entry>
+  <entry>
+    <key>pais</key>
+    <value>default</value>
+  </entry>
+</defaults>
