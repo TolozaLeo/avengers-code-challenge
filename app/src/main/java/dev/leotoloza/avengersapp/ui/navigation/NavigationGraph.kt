@@ -16,7 +16,9 @@ import dev.leotoloza.avengersapp.ui.screens.SplashScreen
 import dev.leotoloza.avengersapp.ui.screens.characters.CharacterDetailScreen
 import dev.leotoloza.avengersapp.ui.screens.characters.CharactersScreen
 import dev.leotoloza.avengersapp.ui.screens.events.PanelControlScreen
+import dev.leotoloza.avengersapp.ui.screens.favorites.FavoritesScreen
 import dev.leotoloza.avengersapp.ui.viewmodels.CharactersViewModel
+import dev.leotoloza.avengersapp.ui.viewmodels.FavoritesViewModel
 import dev.leotoloza.avengersapp.ui.viewmodels.PanelControlViewModel
 
 internal const val MAIN_APP_GRAPH_ROUTE = "main_app_graph"
@@ -89,7 +91,19 @@ fun NavGraph(
             composable(Screens.PanelControl.route) { entry ->
                 val panelControlViewModel: PanelControlViewModel = hiltViewModel(entry)
                 PanelControlScreen(
-                    viewModel = panelControlViewModel,)
+                    viewModel = panelControlViewModel,
+                    onNavigateToFavorites = {
+                        navController.navigate(Screens.Favorites.route)
+                    }
+                )
+            }
+
+            composable(Screens.Favorites.route) { entry ->
+                onTitleChange("Favoritos")
+                val favoritesViewModel: FavoritesViewModel = hiltViewModel(entry)
+                FavoritesScreen(
+                    viewModel = favoritesViewModel
+                )
             }
         }
     }

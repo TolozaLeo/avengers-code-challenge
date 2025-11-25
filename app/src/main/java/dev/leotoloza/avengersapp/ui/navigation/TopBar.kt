@@ -24,7 +24,7 @@ fun TopBar(
     val navBackStackEntry = navController.currentBackStackEntryAsState().value
     val currentDestination = navBackStackEntry?.destination?.route
 
-    val shouldShowBackButton = currentDestination == Screens.CharacterDetail.route
+    val shouldShowBackButton = currentDestination == Screens.CharacterDetail.route || currentDestination == Screens.Favorites.route
 
     CenterAlignedTopAppBar(
         title = {

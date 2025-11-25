@@ -18,19 +18,17 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import dev.leotoloza.avengersapp.domain.model.Character
-import dev.leotoloza.avengersapp.ui.navigation.Screens
 import kotlinx.coroutines.flow.filter
 
 @Composable
 fun CharactersList(
     charactersList: List<Character>,
     favorites: List<Character>,
-    navController: NavController,
     isLoadingMore: Boolean,
     onLoadMore: () -> Unit,
-    onToggleFavorite: (Character) -> Unit
+    onToggleFavorite: (Character) -> Unit,
+    onCharacterClick: (Character) -> Unit
 ) {
     val listState = rememberLazyListState()
 
@@ -47,9 +45,7 @@ fun CharactersList(
                 character = character,
                 isFavorite = favorites.any { it.id == character.id },
                 onFavoriteClick = { onToggleFavorite(character) },
-                onItemClicked = {
-                    navController.navigate(Screens.CharacterDetail.createRoute(character.id))
-                })
+                onItemClicked = { onCharacterClick(character) })
         }
         if (isLoadingMore) {
             item {

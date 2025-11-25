@@ -7,6 +7,7 @@ plugins {
     id("kotlin-parcelize")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("com.google.firebase.firebase-perf")
 }
 
 hilt {
@@ -88,4 +89,5 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.firebaseui:firebase-ui-auth:9.0.0")
     /* implementation("com.google.firebase:firebase-config") */
+    implementation("com.google.firebase:firebase-perf")
 }

@@ -49,10 +49,12 @@ fun CharactersScreen(
             CharactersList(
                 charactersList = uiState.characters,
                 favorites = uiState.favorites,
-                navController = navController,
                 isLoadingMore = uiState.isLoadingMore,
                 onLoadMore = { viewModel.getCharacters() },
-                onToggleFavorite = { character -> viewModel.toggleFavorite(character) }
+                onToggleFavorite = { character -> viewModel.toggleFavorite(character) },
+                onCharacterClick = { character ->
+                    navController.navigate(dev.leotoloza.avengersapp.ui.navigation.Screens.CharacterDetail.createRoute(character.id))
+                }
             )
         }
     }

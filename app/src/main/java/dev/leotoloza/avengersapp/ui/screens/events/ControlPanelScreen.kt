@@ -25,6 +25,7 @@ import dev.leotoloza.avengersapp.ui.viewmodels.PanelControlViewModel
 @Composable
 fun PanelControlScreen(
     viewModel: PanelControlViewModel,
+    onNavigateToFavorites: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -40,7 +41,7 @@ fun PanelControlScreen(
             text = "Favoritos",
             backgroundColor = Color(0xFFFFF9C4), // Light Yellow
             textColor = Color.Black,
-            onClick = { /* TODO */ }
+            onClick = onNavigateToFavorites
         )
 
         Spacer(modifier = Modifier.height(32.dp))
