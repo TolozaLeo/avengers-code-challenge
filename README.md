@@ -1,4 +1,5 @@
 # Marvel app - code challenge
+Extended documentation: <a href="https://deepwiki.com/TolozaLeo/avengers-code-challenge"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
 ## 📑 Table of Contents
 - 🇪🇸 [Versión en Español](#versión-en-español)
 - 🇬🇧 [English Version](#english-version)
@@ -28,7 +29,7 @@ Aquí demuestro mis conocimientos y mi forma de programar.
 
 ---
 
-## ✨ Características (en progreso)
+## ✨ Características
 - 📖 Listado de personajes con información oficial.  
 - 🔍 Detalles de cada héroe o villano.  
 - 📅 Eventos llevados a cabo por Marvel.  
@@ -93,7 +94,7 @@ Here I showcase both my technical knowledge and my approach to programming.
 
 ---
 
-## ✨ Features (in progress)
+## ✨ Features
 - 📖 Character list with official information.  
 - 🔍 Detailed view for each hero or villain.  
 - 📅 Marvel universe events.  
@@ -125,19 +126,6 @@ You can see a preview of the design in Adobe XD:
 - **Testing:** JUnit  
 
 ---
-## ⚙️ Instalación y configuración (Android)
-1. Clonar el repositorio:  
-   ```bash
-   git clone https://github.com/TolozaLeo/avengers-code-challenge.git
-   ```
-2. Crear una cuenta en [Marvel Developer](https://developer.marvel.com/) y obtener tus API Keys.
-3. Abrir el proyecto en Android Studio.
-4. En el archivo local.properties agregar:
-   ```bash
-   MARVEL_PUBLIC_KEY=tu_public_key
-   MARVEL_PRIVATE_KEY=tu_private_key
-   ```
-5. Ejecutar la app en un dispositivo o emulador Android.
 
 ## ⚙️ Installation & Setup (Android)
 1. Clone the repository:  
