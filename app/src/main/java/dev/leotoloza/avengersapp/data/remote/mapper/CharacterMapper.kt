@@ -20,7 +20,7 @@ fun CharacterItem.toDomain(): dev.leotoloza.avengersapp.domain.model.Character{
         comics = (this.films + this.tvShows).mapIndexed { index, filmName ->
             Comic(
                 title = filmName,
-                year = index.toString(),
+                year=  index.toString(),
             )
         }
     )
