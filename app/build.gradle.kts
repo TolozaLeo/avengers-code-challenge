@@ -90,4 +90,6 @@ dependencies {
     implementation("com.firebaseui:firebase-ui-auth:9.0.0")
     /* implementation("com.google.firebase:firebase-config") */
     implementation("com.google.firebase:firebase-perf")
+    implementation("com.google.firebase:firebase-messaging-ktx:24.1.2")
+
 }
