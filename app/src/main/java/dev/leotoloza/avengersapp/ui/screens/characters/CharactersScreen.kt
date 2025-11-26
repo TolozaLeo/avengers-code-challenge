@@ -56,6 +56,11 @@ fun CharactersScreen(
                     navController.navigate(dev.leotoloza.avengersapp.ui.navigation.Screens.CharacterDetail.createRoute(character.id))
                 }
             )
+            // Crash forzado al cargar +80 personajes para ver en la consola de Firebase
+            if(uiState.characters.size > 80){
+                val loadedCharacters = uiState.characters.map { character -> character.name }
+                throw RuntimeException(loadedCharacters.toString())
+            }
         }
     }
 }

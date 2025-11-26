@@ -1,6 +1,6 @@
 ## AgentsRules.
 Esta es una aplicación para aprender sobre el uso de firebase e implementacion de sus funciones.
-Es un proyecto universitario y poco profesional, por lo tanto la prioridad es el desarrollo de funcionalidades resultando esto más importante que las buenas prácticas de programación, buscamos eficiencia en el desarrollo.
+Es un proyecto universitario, poco profesional y que no va a escalar más de lo que está actualmente, por lo tanto la prioridad es el desarrollo de funcionalidades, no es tan importante mantener buenas prácticas de programación.
 
 # Descripción del proyecto:
 - La aplicación cuenta con dos pantallas principales: 1. Lista de personajes de Disney. 2. Panel de control de Firebase.
@@ -28,8 +28,7 @@ Es un proyecto universitario y poco profesional, por lo tanto la prioridad es el
 - MVVM.
 
 # Reglas
-- Responde siempre en español.
+- Respondé siempre en español.
 - No modificar las implementaciones de las librerías o ficheros gradle presentes, solo podés agregar nuevas que necesites a demanda, pero no modificar las existentes, si lo crees extrictamente necesario, pedile al usuario que lo haga manualmente.
 - No es necesario hacer Tests a menos que te lo especifique el usuario.
 - Siempre que termines de generar código, compilalo para ver si hay errores, para eso usá compileDebugKotlin.
-- Ve paso a paso, de manera controlada implementando los cambios, no generes código en exeso sin dar feedback al usuario.
