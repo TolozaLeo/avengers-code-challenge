@@ -66,4 +66,10 @@ object ServiceModule {
     fun provideFirestore(): com.google.firebase.firestore.FirebaseFirestore {
         return com.google.firebase.firestore.FirebaseFirestore.getInstance()
     }
+
+    @Provides
+    @Singleton
+    fun provideRemoteConfig(): com.google.firebase.remoteconfig.FirebaseRemoteConfig {
+        return com.google.firebase.remoteconfig.FirebaseRemoteConfig.getInstance()
+    }
 }

@@ -15,7 +15,7 @@ import dev.leotoloza.avengersapp.domain.model.Character
 import dev.leotoloza.avengersapp.ui.screens.SplashScreen
 import dev.leotoloza.avengersapp.ui.screens.characters.CharacterDetailScreen
 import dev.leotoloza.avengersapp.ui.screens.characters.CharactersScreen
-import dev.leotoloza.avengersapp.ui.screens.events.PanelControlScreen
+import dev.leotoloza.avengersapp.ui.screens.controlPanel.PanelControlScreen
 import dev.leotoloza.avengersapp.ui.screens.favorites.FavoritesScreen
 import dev.leotoloza.avengersapp.ui.viewmodels.CharactersViewModel
 import dev.leotoloza.avengersapp.ui.viewmodels.FavoritesViewModel
