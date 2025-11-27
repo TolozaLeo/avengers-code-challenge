@@ -1,5 +1,6 @@
 package dev.leotoloza.avengersapp
 
+import dev.leotoloza.avengersapp.account.InitialScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -30,3 +31,4 @@ fun NavigationWrapper(navHostController: NavHostController, auth: FirebaseAuth) 
         }
     }
 }
+

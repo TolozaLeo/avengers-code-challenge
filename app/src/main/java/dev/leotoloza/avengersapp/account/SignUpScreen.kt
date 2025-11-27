@@ -23,7 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.firebase.auth.FirebaseAuth
-import dev.leotoloza.avengersapp.ui.theme.Black
+import dev.leotoloza.avengersapp.ui.theme.DarkGrey
 import dev.leotoloza.avengersapp.ui.theme.White
 
 @Composable
@@ -31,7 +31,7 @@ fun SignUpScreen(auth: FirebaseAuth, navigateToInitial: () -> Unit = {}) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    Column(modifier = Modifier.fillMaxSize().background(Black).padding(horizontal = 32.dp),
+    Column(modifier = Modifier.fillMaxSize().background(DarkGrey).padding(horizontal = 32.dp),
         horizontalAlignment = Alignment.CenterHorizontally) {
         Text("Atrás", color = White, fontWeight = FontWeight.Bold, fontSize = 40.sp,
             modifier = Modifier.padding(vertical = 24.dp).clickable{navigateToInitial()}
