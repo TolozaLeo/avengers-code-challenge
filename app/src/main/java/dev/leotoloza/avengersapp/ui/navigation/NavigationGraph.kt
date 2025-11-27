@@ -35,13 +35,34 @@ fun NavGraph(
         startDestination = Screens.Splash.route,
     ) {
         composable(Screens.Splash.route) {
-            SplashScreen(onNavigateToNextScreen = {
-                navController.navigate(MAIN_APP_GRAPH_ROUTE) { // navega al grafo principal
-                    popUpTo(Screens.Splash.route) {
-                        inclusive = true // Elimina Splash del back stack para que no sea navegable
+            SplashScreen(
+                onNavigateToNextScreen = {
+                    navController.navigate(MAIN_APP_GRAPH_ROUTE) {
+                        popUpTo(Screens.Splash.route) {
+                            inclusive = true
+                        }
+                    }
+                },
+                onNavigateToAuth = {
+                    navController.navigate(Screens.Authentication.route) {
+                        popUpTo(Screens.Splash.route) {
+                            inclusive = true
+                        }
                     }
                 }
-            })
+            )
+        }
+
+        composable(Screens.Authentication.route) {
+            dev.leotoloza.avengersapp.ui.screens.authentication.AuthenticationScreen(
+                onLoginSuccess = {
+                    navController.navigate(MAIN_APP_GRAPH_ROUTE) {
+                        popUpTo(Screens.Authentication.route) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
         }
 
         // Main app graph contiene las pantallas principales de la bottomBar
@@ -97,6 +118,13 @@ fun NavGraph(
                     viewModel = panelControlViewModel,
                     onNavigateToFavorites = {
                         navController.navigate(Screens.Favorites.route)
+                    },
+                    onLogout = {
+                        navController.navigate(Screens.Authentication.route) {
+                            popUpTo(MAIN_APP_GRAPH_ROUTE) {
+                                inclusive = true
+                            }
+                        }
                     }
                 )
             }
