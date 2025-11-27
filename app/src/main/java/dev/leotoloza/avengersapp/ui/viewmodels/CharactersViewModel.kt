@@ -28,6 +28,7 @@ class CharactersViewModel
     private val toggleFavoriteUseCase: dev.leotoloza.avengersapp.domain.usecases.ToggleFavoriteUseCase,
     private val getFavoritesUseCase: dev.leotoloza.avengersapp.domain.usecases.GetFavoritesUseCase,
     private val errorProvider: UiErrorProvider,
+    private val analyticsManager: dev.leotoloza.avengersapp.data.service.firebase.AnalyticsManager
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(CharactersUiState())
     val uiState: StateFlow<CharactersUiState> = _uiState
@@ -49,11 +50,19 @@ class CharactersViewModel
     fun toggleFavorite(character: Character) {
         viewModelScope.launch {
             try {
+                val isFavorite = _uiState.value.favorites.any { it.id == character.id }
+                if (!isFavorite) {
+                    analyticsManager.logFavoriteAdded(character.id.toInt(), character.name)
+                }
                 toggleFavoriteUseCase(character)
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(error = errorProvider.getErrorMessage(e))
             }
         }
+    }
+
+    fun logCharacterViewed(character: Character) {
+        analyticsManager.logCharacterViewed(character.id.toInt(), character.name)
     }
 
     fun getCharacters() {

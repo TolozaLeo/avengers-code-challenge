@@ -1,4 +1,4 @@
-package dev.leotoloza.avengersapp.firebasemenssagingservice
+package dev.leotoloza.avengersapp.data.service.firebase
 
 
 import android.Manifest
@@ -8,6 +8,7 @@ import android.os.Build
 import androidx.annotation.RequiresPermission
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -18,7 +19,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         super.onNewToken(token)
 
 
-        com.google.firebase.messaging.FirebaseMessaging.getInstance()
+        FirebaseMessaging.getInstance()
             .subscribeToTopic("favorites")
     }
 
@@ -32,15 +33,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private fun showNotification(message: RemoteMessage) {
         val channelId = "favorites_channel"
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                channelId,
-                "Favoritos",
-                NotificationManager.IMPORTANCE_HIGH
-            )
-            getSystemService(NotificationManager::class.java)
-                .createNotificationChannel(channel)
-        }
+        val channel = NotificationChannel(
+            channelId,
+            "Favoritos",
+            NotificationManager.IMPORTANCE_HIGH
+        )
+        getSystemService(NotificationManager::class.java)
+            .createNotificationChannel(channel)
 
         val title = message.notification?.title ?: "Nuevo favorito"
         val body = message.notification?.body ?: "Se agregó un personaje a favoritos"

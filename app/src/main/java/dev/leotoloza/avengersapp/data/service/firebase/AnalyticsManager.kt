@@ -1,4 +1,4 @@
-package dev.leotoloza.avengersapp.firebaseanalitycs
+package dev.leotoloza.avengersapp.data.service.firebase
 
 
 import android.content.Context
@@ -7,7 +7,7 @@ import com.google.firebase.analytics.logEvent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class AnalyticsManage @Inject constructor(
+class AnalyticsManager @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
     private val analytics = FirebaseAnalytics.getInstance(context)
@@ -29,7 +29,7 @@ class AnalyticsManage @Inject constructor(
         }
     }
 
-    // ---------- EVENTO 2: PERSONAJE_VISTO ----------
+    // ---------- EVENTO 2: PERSONAJE VISTO ----------
     fun logCharacterViewed(characterId: Int, characterName: String) {
         analytics.logEvent("personaje_visto") {
             param("character_id", characterId.toLong())

@@ -78,6 +78,9 @@ fun NavGraph(
 
                     character?.let { char ->
                         onTitleChange(char.name.uppercase())
+                        LaunchedEffect(Unit) {
+                            charactersViewModel.logCharacterViewed(char)
+                        }
                         CharacterDetailScreen(character = char)
                     } ?: run { // Si character es null (id no valido), navega hacia atras
                         LaunchedEffect(Unit) {
