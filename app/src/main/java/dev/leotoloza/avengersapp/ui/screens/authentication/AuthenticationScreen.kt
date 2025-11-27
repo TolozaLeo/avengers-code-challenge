@@ -3,6 +3,7 @@ package dev.leotoloza.avengersapp.ui.screens.authentication
 import android.app.Activity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,6 +13,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -39,6 +42,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import dev.leotoloza.avengersapp.R
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
@@ -112,6 +116,7 @@ fun AuthenticationScreen(
                 value = email,
                 onValueChange = { email = it },
                 label = { Text("Email", color = Color.Black) },
+                textStyle = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.fillMaxWidth(),
                 enabled = !isLoading,
                 singleLine = true,
@@ -121,7 +126,8 @@ fun AuthenticationScreen(
                     focusedBorderColor = Color.Black,
                     unfocusedBorderColor = Color.Black,
                     focusedLabelColor = Color.Black,
-                    unfocusedLabelColor = Color.Black
+                    unfocusedLabelColor = Color.Black,
+                    cursorColor = Color.Black
                 )
             )
 
@@ -141,7 +147,8 @@ fun AuthenticationScreen(
                     focusedBorderColor = Color.Black,
                     unfocusedBorderColor = Color.Black,
                     focusedLabelColor = Color.Black,
-                    unfocusedLabelColor = Color.Black
+                    unfocusedLabelColor = Color.Black,
+                    cursorColor = Color.Black
                 )
             )
 
@@ -149,7 +156,7 @@ fun AuthenticationScreen(
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = errorMessage!!,
-                    color = MaterialTheme.colorScheme.error,
+                    color = Color.Red,
                     style = MaterialTheme.typography.bodySmall
                 )
             }
@@ -175,6 +182,11 @@ fun AuthenticationScreen(
                     }
                 },
                 modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(
+                    disabledContainerColor = MaterialTheme.colorScheme.inverseOnSurface.copy(alpha = 0.5f),
+                    containerColor = MaterialTheme.colorScheme.secondary,
+                    contentColor = MaterialTheme.colorScheme.primary,
+                ),
                 enabled = !isLoading && email.isNotBlank() && password.isNotBlank()
             ) {
                 if (isLoading) {
@@ -211,7 +223,7 @@ fun AuthenticationScreen(
                     isLoading = true
                     errorMessage = null
                     val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken("YOUR_WEB_CLIENT_ID") // Necesitas configurar esto en Firebase Console
+                        .requestIdToken(context.getString(R.string.default_web_client_id))
                         .requestEmail()
                         .build()
                     val googleSignInClient = GoogleSignIn.getClient(context, gso)
